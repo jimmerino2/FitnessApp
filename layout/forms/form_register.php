@@ -26,4 +26,4 @@ function renderFormRegister()
 }
 ?>
 
-<script src='layout\forms\FormValidation.js'></script>
+<script src='layout\forms\form_validation.js'></script>

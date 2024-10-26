@@ -4,7 +4,7 @@ function renderFormItemText($title = "Title", $name = "Name", $placeholder = "Pl
     echo "
     <div style='padding: 5px; width: 70%'>
         <h3>$title</h3>
-        <input type='text' name='$name' placeholder='$placeholder' style='height:20px; width: 100%'>
+        <input type='text' name='$name' placeholder='$placeholder' style='height:20px; width: 100%;' required>
     </div>
     ";
 }
@@ -16,7 +16,7 @@ function renderFormItemRadio($title = "Title", $name, $values)
         <h3>$title</h3>
     ";
     foreach ($values as $value => $label) {
-        echo "<input type='radio' name='$name' value='$value' style='width: auto; margin: 0px 20px 10px 0px'>$label<br>";
+        echo "<input type='radio' name='$name' value='$value' style='width: auto; margin: 0px 20px 10px 0px' required checked>$label<br>";
     }
     echo "</div>";
 }
@@ -26,7 +26,7 @@ function renderFormItemCalendar($title = "Title", $name)
     echo "
     <div style='padding: 5px; width: 70%'>
         <h3>$title</h3>
-        <input type='date' name='$name' style='width: 100%; height: 25px'>
+        <input type='date' name='$name' style='width: 100%; height: 25px' required>
     </div>
     ";
 }
@@ -36,7 +36,7 @@ function renderFormItemEmail($title = "Title", $name = "Name", $placeholder = "P
     echo "
     <div style='padding: 5px; width: 70%'>
         <h3>$title</h3>
-        <input type='email' name='$name' placeholder='$placeholder' style='height:20px; width: 100%'>
+        <input type='email' name='$name' placeholder='$placeholder' style='height:20px; width: 100%' required>
     </div>
     ";
 }
@@ -46,7 +46,7 @@ function renderFormItemPassword($title = "Title", $name = "Name", $placeholder =
     echo "
     <div style='padding: 5px; width: 70%'>
         <h3>$title</h3>
-        <input type='password' name='$name' placeholder='$placeholder' style='height:20px; width: 100%'>
+        <input type='password' name='$name' placeholder='$placeholder' style='height:20px; width: 100%' required>
     </div>
     ";
 }

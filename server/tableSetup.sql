@@ -7,8 +7,7 @@ CREATE TABLE IF NOT EXISTS Member (
     gender CHAR(1) NOT NULL,     
     email VARCHAR(50) NOT NULL,
     DOB DATE NOT NULL,
-    UNIQUE (email),
-    UNIQUE (memberContact)
+    UNIQUE (email)
 );
 
 -- Nutritionist Table

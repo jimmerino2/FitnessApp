@@ -1,62 +1,100 @@
 <?php
 include __DIR__ . '/../../components/FormItem.php';
 include __DIR__ . '/../../components/Buttons.php';
+include __DIR__ . '/../../server/connectDB.php';
 
-function renderFormRegister()
+function renderFormRegister($conn)
 {
+    #region Generation
     echo "
-    <form name='registerForm' action='#' method='POST' onsubmit='return validateFormRegister();' style='border: 1px solid black; padding: 15px; width: 40rem'>
+    <form id='regiForm' name='registerForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem'>
         <div style='justify-items:center;'>
             <h2>Register Form</h2>";
 
     renderFormItemText("Name", "name", "Enter Your Name");
     renderFormItemText("Contact Number", "contact", "0123456789");
     renderFormItemEmail("Email", "email", "xxx@gmail.com");
-    renderFormItemPassword("Set Password", "pass", "Enter Password");
+    renderFormItemPassword("Set Password (10+ Characters)", "pass", "Enter Password");
     renderFormItemPassword("Confirm Password", "pass_conf", "Confirm Password");
     renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female"]);
     renderFormitemCalendar("Date of Birth", 'birthday');
 
     renderSmallButton('', '', 'Register', 'submit');
-    renderSmallButton('#', '', 'Cancel', 'button');
+    renderSmallButton('#', 'hideForm()', 'Cancel', 'button');
 
-    echo "
-           </div>
-    </form>
-    ";
+    echo "</div></form>";
+    #endregion
+
+    #region Validation and Storage
+    $conn->select_db('fitnessapp');
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_POST['name'];
+        $contact = $_POST['contact'];
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+        $pass_check = $_POST['pass_conf'];
+        $gender = $_POST['gender'];
+        $birthday = $_POST['birthday'];
+
+        // Check Contact Number
+        if (!preg_match('/^\d{10}$/', $contact)) {
+            $errMsg = "Contact Number must have 10 numbers.";
+            $error = true;
+        }
+
+        // Check if email is unique
+        $sql = "SELECT email FROM member WHERE email = ?";
+        $stmt_check = mysqli_prepare($conn, $sql);
+        $stmt_check->bind_param('s', $email);
+        $stmt_check->execute();
+        $stmt_check->store_result();
+
+        // Check password length >= 10
+        if (strlen($pass) < 10) {
+            $errMsg .= "\nPassword must have 10 or more characters";
+            $error = true;
+        } else {
+            $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
+        }
+
+        // Check password and check password are same
+        if ($pass !== $pass_check) {
+            $errMsg .= "\nPasswords do not match.";
+            $error = true;
+        }
+
+        // Insert if emails are unique
+        if ($stmt_check->num_rows > 0) {
+            $errMsg .= "<br>Email already exists.";
+            $error = true;
+        }
+
+        if (!$error) {
+            $insert_sql = "INSERT INTO member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt_insert = mysqli_prepare($conn, $insert_sql);
+            $stmt_insert->bind_param('ssssss', $name, $contact, $hashed_pass, $gender, $email, $birthday);
+            $stmt_insert->execute();
+
+            if ($stmt_insert->affected_rows > 0) {
+                header("Location: test_page_jim.php");
+                exit();
+            }
+        } else {
+            echo "<script>alert(" . json_encode(trim($errMsg)) . ");</script>";
+        }
+
+        $stmt_check->close();
+        if (isset($stmt_insert)) {
+            $stmt_insert->close();
+        }
+    }
+    #endregion
 }
 ?>
 
 <script>
-    function validateFormRegister() {
-        // Get form elements
-        var name = document.forms["registerForm"]["name"].value;
-        var contact = document.forms["registerForm"]["contact"].value;
-        var email = document.forms["registerForm"]["email"].value;
-        var pass = document.forms["registerForm"]["pass"].value;
-        var pass_conf = document.forms["registerForm"]["pass_conf"].value;
-        var gender = document.forms["registerForm"]["gender"].value;
-        var birthday = document.forms["registerForm"]["birthday"].value;
-
-        // All fields must be filled in
-        if (name === "" || contact === "" || email === "" || pass === "" || pass_conf === "" || gender === "" || birthday === "") {
-            alert("All fields must be filled out");
-            return false;
-        }
-
-        // Passwords match
-        if (pass !== pass_conf) {
-            alert("Passwords do not match!");
-            return false;
-        }
-
-        // Check Contact Number
-        var contactPattern = /^\d{10}$/;
-        if (!contactPattern.test(contact)) {
-            alert("Contact number must be 10 digits.");
-            return false;
-        }
-
-        return true;
+    function hideForm() {
+        document.getElementById('regiForm').style.display = 'none';
     }
 </script>

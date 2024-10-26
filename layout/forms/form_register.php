@@ -1,6 +1,6 @@
 <?php
-include __DIR__ . '/../../components/forms/FormItem.php';
-
+include __DIR__ . '/../../components/FormItem.php';
+include __DIR__ . '/../../components/Buttons.php';
 
 function renderFormRegister()
 {
@@ -14,13 +14,14 @@ function renderFormRegister()
     renderFormItemEmail("Email", "email", "xxx@gmail.com");
     renderFormItemPassword("Set Password", "pass", "Enter Password");
     renderFormItemPassword("Confirm Password", "pass_conf", "Confirm Password");
-    renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female", 'n' => "Prefer not to say"]);
+    renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female"]);
     renderFormitemCalendar("Date of Birth", 'birthday');
 
+    renderSmallButton('', '', 'Register', 'submit');
+    renderSmallButton('#', '', 'Cancel', 'button');
+
     echo "
-            <button type='submit' style='margin:10px; padding: 8px 15px;'>Register</button>
-            <button type='button' onclick='' style='margin:10px; padding: 8px 15px;'>Cancel</button>
-        </div>
+           </div>
     </form>
     ";
 }

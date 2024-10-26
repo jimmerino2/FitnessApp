@@ -11,7 +11,7 @@ function renderFormRegister()
 
     renderFormItemText("Name", "name", "Enter Your Name");
     renderFormItemText("Contact Number", "contact", "0123456789");
-    renderFormItemText("Email", "email", "xxx@gmail.com");
+    renderFormItemEmail("Email", "email", "xxx@gmail.com");
     renderFormItemText("Set Password", "pass", "Enter Password");
     renderFormItemText("Confirm Password", "pass_conf", "Confirm Password");
     renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female", 'n' => "Prefer not to say"]);

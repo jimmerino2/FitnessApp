@@ -1,5 +1,5 @@
 <?php
-include 'FormItem.php';
+include 'components\forms\FormItem.php';
 
 
 function renderFormRegister()
@@ -26,4 +26,4 @@ function renderFormRegister()
 }
 ?>
 
-<script src='../components/FormValidation.js'></script>
+<script src='layout\forms\FormValidation.js'></script>

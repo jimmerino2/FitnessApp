@@ -40,3 +40,13 @@ function renderFormItemEmail($title = "Title", $name = "Name", $placeholder = "P
     </div>
     ";
 }
+
+function renderFormItemPassword($title = "Title", $name = "Name", $placeholder = "Placeholder")
+{
+    echo "
+    <div style='padding: 5px; width: 70%'>
+        <h3>$title</h3>
+        <input type='password' name='$name' placeholder='$placeholder' style='height:20px; width: 100%'>
+    </div>
+    ";
+}

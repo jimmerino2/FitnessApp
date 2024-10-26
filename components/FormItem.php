@@ -4,7 +4,7 @@ function renderFormItemText($title = "Title", $name = "Name", $placeholder = "Pl
     echo "
     <div style='padding: 5px; width: 70%'>
         <h3>$title</h3>
-        <input type='text' name='$name' placeholder='$placeholder' style='height:20px; width: 100%'>
+        <input type='text' name='$name' placeholder='$placeholder' style='height:20px; width: 100%;'>
     </div>
     ";
 }

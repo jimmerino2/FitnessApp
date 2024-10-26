@@ -9,7 +9,7 @@
 
 <body style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;">
     <?php
-    include 'layout\forms\form_register.php';
+    include 'C:\xampp\htdocs\FitnessWeb\layout\forms\form_register.php';
 
     // Handle form submission
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

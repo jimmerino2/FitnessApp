@@ -13,3 +13,18 @@ function renderClassBox($text1, $text2)
     </div>
     ";
 }
+
+function renderNutBox($image, $name, $description){
+    echo "
+        <div class=\"container\" style=\"padding: 10px; border: 1px solid black; display: flex; justify-content: center; margin:10px 300px;\">
+        <img src=\"$image\" style=\"border: 1px solid black; width: 25%; aspect-ratio: 1/1;\">
+        <div class=\"nutriDesc\" style=\"flex:1; border: 1px solid black; margin: 10px\">
+            <h2>$name</h2>
+            <p>$description</p>
+        </div>
+        ";
+    echo "<div style=\"display: flex; flex-direction: column; justify-content: flex-end;\">";
+        renderHomeSmallButton('','','Next','');
+    echo "
+    </div></div>";
+    }

@@ -5,21 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function hideFormRegi() {
-            document.getElementById('regiForm').style.display = 'none';
-        }
-    </script>
 </head>
 
 <body
     style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
     <form id='regiForm' name='registerForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
         <div style='justify-items:center;'>
-            <h2>Register Form</h2>
+            <h2 style="margin-bottom: 25px;">Register Form</h2>
 
-            <br><a href="login_jim.php">To Login</a>
-            <br><a href="forgot_jim.php">To forgot</a>
+            <div style="width: 70%;"><a href="form_login.php" style="text-decoration: none; color: blue;">Have an
+                    account? Log in
+                    instead.</a></div>
 
             <?php
             include_once __DIR__ . '/../components/FormItem.php';
@@ -32,8 +28,8 @@
             renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female"]);
             renderFormitemCalendar("Date of Birth", 'birthday');
 
+            renderSmallButton('', '', 'Reset', 'reset');
             renderSmallButton('', '', 'Register', 'submit');
-            renderSmallButton('#', 'hideFormRegi()', 'Cancel', 'button');
             ?>
         </div>
     </form>
@@ -96,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_insert->execute();
 
         if ($stmt_insert->affected_rows > 0) {
-            header("Location: test_page_jim.php");
+            header("Location: home_page.php");
             exit();
         }
     } else {

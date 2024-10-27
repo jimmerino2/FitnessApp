@@ -19,9 +19,7 @@
          ";
          renderClassBoxFlex();
 
-         renderNutBox('','Name','Hi im a nutritionist');
-
-    renderClassBoxFlex();
+         renderNutBox('../asset/image/toji.jpg','Name','Hi im a nutritionist');
 
     ?>
 </body>

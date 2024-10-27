@@ -1,5 +1,5 @@
-<?php 
-include_once __DIR__ . '/../../FitnessWeb/components/Buttons.php';
+<?php
+include_once __DIR__ . '/Buttons.php';
 
 function renderClassBox($text1, $text2)
 {

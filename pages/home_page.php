@@ -11,6 +11,11 @@
          include 'C:\xampp\htdocs\FitnessWeb\layout\home\home_layout.php';
         
          renderAdvertise();
+         echo "
+         <h1 style=\"font-size: 30px; text-align: center;\">Our Classes</h1>
+         ";
+         renderClassBoxFlex();
+         
     ?>
 </body>
 </html>

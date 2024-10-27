@@ -1,5 +1,5 @@
 <?php
-include 'server\connectDB.php';
+include 'connectDB.php';
 
 function getAllRecords($table)
 {

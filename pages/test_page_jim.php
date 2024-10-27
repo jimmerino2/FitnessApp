@@ -7,13 +7,10 @@
     <title>Document</title>
 </head>
 
-<body style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;">
-    <?php
-    include 'C:\xampp\htdocs\FitnessApp\layout\forms\form_register.php';
-
-    renderFormRegister($conn);
-
-    ?>
+<body>
+    <a href="register_jim.php">To Register</a>
+    <br><a href="login_jim.php">To Login</a>
+    <br><a href="forgot_jim.php">To Forgor</a>
 </body>
 
 </html>

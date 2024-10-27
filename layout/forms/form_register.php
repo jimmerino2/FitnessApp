@@ -1,13 +1,13 @@
 <?php
-include __DIR__ . '/../../components/FormItem.php';
-include __DIR__ . '/../../components/Buttons.php';
-include __DIR__ . '/../../server/connectDB.php';
+include_once __DIR__ . '/../../components/FormItem.php';
+include_once __DIR__ . '/../../components/Buttons.php';
+include_once __DIR__ . '/../../server/connectDB.php';
 
 function renderFormRegister($conn)
 {
     #region Generation
     echo "
-    <form id='regiForm' name='registerForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem'>
+    <form id='regiForm' name='registerForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
         <div style='justify-items:center;'>
             <h2>Register Form</h2>";
 
@@ -20,7 +20,7 @@ function renderFormRegister($conn)
     renderFormitemCalendar("Date of Birth", 'birthday');
 
     renderSmallButton('', '', 'Register', 'submit');
-    renderSmallButton('#', 'hideForm()', 'Cancel', 'button');
+    renderSmallButton('#', 'hideFormRegi()', 'Cancel', 'button');
 
     echo "</div></form>";
     #endregion
@@ -29,6 +29,7 @@ function renderFormRegister($conn)
     $conn->select_db('fitnessapp');
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $errMsg = '';
         $name = $_POST['name'];
         $contact = $_POST['contact'];
         $email = $_POST['email'];
@@ -39,7 +40,7 @@ function renderFormRegister($conn)
 
         // Check Contact Number
         if (!preg_match('/^\d{10}$/', $contact)) {
-            $errMsg = "Contact Number must have 10 numbers.";
+            $errMsg .= "Contact Number must have 10 numbers.";
             $error = true;
         }
 
@@ -66,7 +67,7 @@ function renderFormRegister($conn)
 
         // Insert if emails are unique
         if ($stmt_check->num_rows > 0) {
-            $errMsg .= "<br>Email already exists.";
+            $errMsg .= "\nEmail already exists.";
             $error = true;
         }
 
@@ -94,7 +95,7 @@ function renderFormRegister($conn)
 ?>
 
 <script>
-    function hideForm() {
+    function hideFormRegi() {
         document.getElementById('regiForm').style.display = 'none';
     }
 </script>

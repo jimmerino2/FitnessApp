@@ -1,6 +1,6 @@
 <?php
 
-function renderSmallButton($link, $function, $text, $inputType)
+function renderHomeSmallButton($link, $function, $text, $inputType)
 {
     echo "
     <a href=\"$link\" style=\"text-decoration: none;\">

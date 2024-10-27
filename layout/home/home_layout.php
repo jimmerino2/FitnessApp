@@ -11,7 +11,7 @@ function renderAdvertise()
                 <h1 style=\"font-size: 70px;\">Huan Fitness</h1>
                 <p style=\"font-size: 24px\">xxxxxxxxxxx<p>";
 
-    renderHomeBigButton('', '', 'Know more About Us', '');
+    renderBigButton('', '', 'Know more About Us', '');
 
     echo "
             </div>

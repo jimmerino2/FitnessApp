@@ -17,9 +17,9 @@
     echo "
          <h1 style=\"font-size: 30px; text-align: center;\">Our Classes</h1>
          ";
-         renderClassBoxFlex();
+    renderClassBoxFlex();
 
-         renderNutBox('','Name','Hi im a nutritionist');
+    renderNutBox('', 'Name', 'Hi im a nutritionist');
 
     renderClassBoxFlex();
 

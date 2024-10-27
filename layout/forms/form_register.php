@@ -20,6 +20,9 @@ function renderFormRegister($conn)
     renderFormitemCalendar("Date of Birth", 'birthday');
 
     renderSmallButton('', '', 'Register', 'submit');
+    renderSmallButton('#', '', 'Cancel', 'button');
+
+    renderSmallButton('', '', 'Register', 'submit');
     renderSmallButton('#', 'hideFormRegi()', 'Cancel', 'button');
 
     echo "</div></form>";

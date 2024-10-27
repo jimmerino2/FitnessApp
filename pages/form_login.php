@@ -5,11 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function hideFormLogin() {
-            document.getElementById('loginForm').style.display = 'none';
-        }
-    </script>
 </head>
 
 <body
@@ -17,8 +12,6 @@
     <form id='loginForm' name='loginForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
         <div style='justify-items:center;'>
             <h2>Login Form</h2>
-            <br><a href="register_jim.php">To Register</a>
-            <br><a href="forgot_jim.php">To forgot</a>
 
             <?php
             include_once __DIR__ . '/../components/FormItem.php';
@@ -26,16 +19,16 @@
             renderFormItemPassword("Password", "pass", "Enter Password");
             ?>
             <div style='width:70%; margin:2.5px 0px;'>
-                <a href='forgot_jim.php' style='text-decoration:none; color:blue;'>Forgot Password</a>
+                <a href='form_forgot_pw.php' style='text-decoration:none; color:blue;'>Forgot Password</a>
             </div>
             <div style='width:70%'>
-                <a href='register_jim.php' style='text-decoration:none; color:blue;'>Create an Account</a>
+                <a href='form_register.php' style='text-decoration:none; color:blue;'>Create an Account</a>
             </div><br>
 
             <?php
             include_once __DIR__ . '/../components/Buttons.php';
+            renderSmallButton('', '', 'Reset', 'reset');
             renderSmallButton('', '', 'Login', 'submit');
-            renderSmallButton('#', 'hideFormLogin()', 'Cancel', 'button');
             ?>
         </div>
     </form>
@@ -65,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($pass, $hashed_password)) {
             $_SESSION['userinput'] = $email;
-            header("Location:test_page_jim.php");
+            header("Location:home_page.php");
         } else {
             echo "<script>alert('Invalid username or password.')</script>";
         }

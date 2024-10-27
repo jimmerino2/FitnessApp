@@ -8,13 +8,14 @@ function renderClassBox($text1, $text2)
     <h1 style=\"font-size: 30px\">$text1</h1><br>
     <p style=\"font-size:20px\">$text2</p>";
 
-    renderHomeMediumButton('', '', 'Class', '');
+    renderMediumButton('', '', 'Class', '');
     echo "
     </div>
     ";
 }
 
-function renderNutBox($image, $name, $description){
+function renderNutBox($image, $name, $description)
+{
     echo "
         <div class=\"container\" style=\"padding: 10px; border: 1px solid black; display: flex; justify-content: center; margin:10px 300px;\">
         <img src=\"$image\" style=\"border: 1px solid black; width: 25%; aspect-ratio: 1/1;\">
@@ -24,7 +25,7 @@ function renderNutBox($image, $name, $description){
         </div>
         ";
     echo "<div style=\"display: flex; flex-direction: column; justify-content: flex-end;\">";
-        renderHomeSmallButton('','','Next','');
+    renderSmallButton('', '', 'Next', '');
     echo "
     </div></div>";
-    }
+}

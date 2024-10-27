@@ -1,5 +1,5 @@
 <?php
 include 'server/setupDB.php';
-header("Location: pages/test_page_jim.php");
+header("Location: pages/home_page.php");
 exit();
 

@@ -4,28 +4,79 @@ include_once __DIR__ . '/Buttons.php';
 function renderClassBox($text1, $text2)
 {
     echo "
-    <div style=\"flex: 1; border: 2px solid black; background-color: lightgreen; max-width: 20%; margin:20px; text-align: center;\">
-    <h1 style=\"font-size: 30px\">$text1</h1><br>
-    <p style=\"font-size:20px\">$text2</p>";
-
+    <div class=\"class-box\">
+        <h1 class=\"class-box-title\">$text1</h1>
+        <p class=\"class-box-description\">$text2</p>";
     renderMediumButton('', '', 'Class', '');
-    echo "
-    </div>
-    ";
+    echo "</div>";
 }
 
 function renderNutBox($image, $name, $description)
 {
     echo "
-        <div class=\"container\" style=\"padding: 10px; border: 1px solid black; display: flex; justify-content: center; margin:10px 300px;\">
-        <img src=\"$image\" style=\"border: 1px solid black; width: 25%; aspect-ratio: 1/1;\">
-        <div class=\"nutriDesc\" style=\"flex:1; border: 1px solid black; margin: 10px\">
-            <h2>$name</h2>
-            <p>$description</p>
-        </div>
-        ";
-    echo "<div style=\"display: flex; flex-direction: column; justify-content: flex-end;\">";
+    <div class=\"nut-box\">
+        <img src=\"$image\" class=\"nut-box-image\">
+        <div class=\"nutriDesc\">
+            <h2 class=\"nut-box-name\">$name</h2>
+            <p class=\"nut-box-description\">$description</p>
+        </div>";
+    echo "<div class=\"button-container\">";
     renderSmallButton('', '', 'Next', '');
-    echo "
-    </div></div>";
+    echo "</div></div>";
 }
+?>
+
+<style>
+    /* CSS for renderClassBox */
+    .class-box {
+        flex: 1;
+        border: 2px solid black;
+        background-color: lightgreen;
+        max-width: 20%;
+        margin: 20px;
+        text-align: center;
+    }
+
+    .class-box-title {
+        font-size: 30px;
+    }
+
+    .class-box-description {
+        font-size: 20px;
+    }
+
+    /* CSS for renderNutBox */
+    .nut-box {
+        padding: 10px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        margin: 10px 300px;
+    }
+
+    .nut-box-image {
+        border: 1px solid black;
+        width: 25%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .nutriDesc {
+        flex: 1;
+        border: 1px solid black;
+        margin: 10px;
+    }
+
+    .nut-box-name {
+        font-size: 24px;
+    }
+
+    .nut-box-description {
+        font-size: 16px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+</style>

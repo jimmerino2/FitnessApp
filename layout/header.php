@@ -1,7 +1,6 @@
 <?php
 function renderHeader($conn)
 {
-    include_once __DIR__ . '/../components/Buttons.php';
     // Start session only if not already started
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -25,7 +24,7 @@ function renderHeader($conn)
         $stmt->bind_result($username);
         $stmt->fetch();
         echo "<span style='margin:0px 15px; font-size: 24px;'>$username</span>";
-        renderSmallButton('../pages/logout.php', '', 'Log Out', 'button');
+        echo "<a href='../server/logout.php'><img src='../asset/image/logout.png' height='50px' width='50px'></a>";
         echo "</div>";
     } else {
         // Guest
@@ -43,15 +42,15 @@ function renderHeader($conn)
             <li><a style='display: flex; margin: 14px 16px; text-decoration: none; text-align: center; color: #000000;'
                 href='../pages/home_page.php'>HOME</a></li>
             <li><a style='display: flex; margin: 14px 16px; text-decoration: none; text-align: center; color: #000000'
-                href='../pages/consultation_page.php'>CONSULTATION</a></li>
+                href='../pages/consultation.php'>CONSULTATION</a></li>
             <li><a style='display: flex; margin: 14px 16px; text-decoration: none; text-align: center; color: #000000'
-                href='../pages/classes_page.php'>CLASSES</a></li>
+                href='../pages/classes.php'>CLASSES</a></li>
     ";
 
     // Check if user is logged in to display HealthRecord link
     if (isset($_SESSION['userinput'])) { // Logged in 
         echo "<li><a style='display: flex; margin: 14px 16px; text-decoration: none; text-align: center; color: #000000'
-                href='../pages/healthrec_page.php'>HEALTH RECORD</a>
+                href='../pages/health_record.php'>HEALTH RECORD</a>
             </li>";
     } else { // Not Logged in
         echo "<li><a style='display: flex; margin: 14px 16px; text-decoration: none; text-align: center; color: #000000'
@@ -60,7 +59,7 @@ function renderHeader($conn)
     }
 
     echo "<li style='margin-left: auto'><a style='display: flex; margin: 14px 16px; text-decoration: none; text-align: center; color: #000000'
-                href='../pages/about_page.php'>ABOUT US</a>
+                href='../pages/about.php'>ABOUT US</a>
             </li>
         </ul>
     </nav>

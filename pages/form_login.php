@@ -27,7 +27,7 @@
 
             <?php
             include_once __DIR__ . '/../components/Buttons.php';
-            renderSmallButton('', '', 'Reset', 'reset');
+            renderSmallButton('home_page.php', '', 'Back', 'button');
             renderSmallButton('', '', 'Login', 'submit');
             ?>
         </div>

@@ -23,7 +23,7 @@
 
             echo "<div style='padding: 20px;'>";
             renderSmallButton('', '', 'Confirm', 'submit');
-            renderSmallButton('', '', 'Reset', 'reset');
+            renderSmallButton('home_page.php', '', 'Back', 'button');
             renderSmallButton('form_login.php', '', 'Log In Instead', 'button');
             echo "</div>";
             ?>

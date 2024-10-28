@@ -28,7 +28,7 @@
             renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female"]);
             renderFormitemCalendar("Date of Birth", 'birthday');
 
-            renderSmallButton('', '', 'Reset', 'reset');
+            renderSmallButton('home_page.php', '', 'Back', 'button');
             renderSmallButton('', '', 'Register', 'submit');
             ?>
         </div>

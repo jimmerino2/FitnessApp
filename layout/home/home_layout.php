@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/../../components/Buttons.php';
-include __DIR__ . '/../../components/ClassBox.php';
+include_once __DIR__ . '/../../components/ClassBox.php';
 
 function renderAdvertise()
 {

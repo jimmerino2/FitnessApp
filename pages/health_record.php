@@ -9,9 +9,11 @@
 
 <body style="margin: 0px;">
     <?php
-    include_once __DIR__ . '/../layout/header.php';
+    session_start();
     include_once __DIR__ . '/../server/connectDB.php';
     $conn->select_db('fitnessapp');
+    include_once __DIR__ . '/../layout/header.php';
+
     renderHeader($conn);
     ?>
 </body>

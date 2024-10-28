@@ -40,6 +40,7 @@
 
 <?php
 include_once __DIR__ . '/../server/connectDB.php';
+include_once __DIR__ . '/../server/data.php';
 $conn->select_db('fitnessapp');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -51,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass_check = $_POST['pass_conf'];
     $gender = $_POST['gender'];
     $birthday = $_POST['birthday'];
+    $error = false;
 
     // Check Contact Number
     if (!preg_match('/^\d{10}$/', $contact)) {
@@ -86,12 +88,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!$error) {
-        $insert_sql = "INSERT INTO member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt_insert = mysqli_prepare($conn, $insert_sql);
-        $stmt_insert->bind_param('ssssss', $name, $contact, $hashed_pass, $gender, $email, $birthday);
-        $stmt_insert->execute();
-
-        if ($stmt_insert->affected_rows > 0) {
+        $sql = "INSERT INTO member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = dataInsertSQL($sql, $conn, [$name, $contact, $hashed_pass, $gender, $email, $birthday]);
+        if ($stmt->affected_rows > 0) {
             header("Location: home_page.php");
             exit();
         }
@@ -100,8 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt_check->close();
-    if (isset($stmt_insert)) {
-        $stmt_insert->close();
+    if (isset($stmt)) {
+        $stmt->close();
     }
 }
 ?>

@@ -19,7 +19,7 @@ $conn->query($sql);
 $conn->select_db('fitnessapp');
 
 // Create Tables by running SQL file
-$sqlFile = 'tableSetup.sql';
+$sqlFile = 'server\tableSetup.sql';
 $sql = file_get_contents($sqlFile);
 if ($sql === false) {
     echo "<script>console.log('Error reading SQL files')</script>"; // Error

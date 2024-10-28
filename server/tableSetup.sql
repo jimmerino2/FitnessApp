@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Nutritionist (
     nutritionistName VARCHAR(50) NOT NULL,
     nutritonistDesc TEXT,
     nutritionistContact VARCHAR(12) NOT NULL,
-    studyRecord varchar(300),
+    studyRecord VARCHAR(300),
     UNIQUE (nutritionistContact)
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Exercise (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     duration INT NOT NULL,
     calories INT NOT NULL,
-    excerciseType VARCHAR(50) NOT NULL
+    exerciseType VARCHAR(50) NOT NULL
 );
 
 -- Classes Table
@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS Classes (
     className VARCHAR(50) NOT NULL,
     classDesc TEXT,
     classTime TIME NOT NULL,
-    classType VARCHAR(50) NOT NULL
-    UNIQUE (className);
+    classType VARCHAR(50) NOT NULL,
+    UNIQUE (className)
 );
 
 -- HealthRecord Table
@@ -59,6 +59,8 @@ CREATE TABLE IF NOT EXISTS Consultation (
     nutritionistID INT(6) UNSIGNED NOT NULL,
     date DATE NOT NULL,
     time TIME NOT NULL,
+    comment TEXT,
+    status BOOLEAN NOT NULL, 
     FOREIGN KEY (memberID) REFERENCES Member(id),
     FOREIGN KEY (nutritionistID) REFERENCES Nutritionist(id)
 );
@@ -78,5 +80,10 @@ CREATE TABLE IF NOT EXISTS Enrollment (
 
 -- #region Data Insertion
 -- Nutritionist Data
-
+INSERT IGNORE INTO Nutritionist (nutritionistName, nutritonistDesc, nutritionistContact, studyRecord) VALUES
+    ('Alice Johnson', 'Experienced dietitian specializing in sports nutrition.', '0123456789', 'Bachelor of Science in Nutrition, Master in Sports Science'),
+    ('Bob Smith', 'Clinical nutritionist with a focus on chronic illness management.', '0987654321', 'Bachelor of Nutrition and Dietetics, Certification in Clinical Nutrition'),
+    ('Cathy Lee', 'Holistic nutritionist helping clients with weight management.', '0112233445', 'Bachelor of Health Sciences, Certified Holistic Nutritionist'),
+    ('David Brown', 'Registered dietitian specializing in pediatric nutrition.', '0223344556', 'Bachelor of Science in Dietetics, Pediatric Nutrition Certification'),
+    ('Eva Green', 'Expert in vegan and plant-based diets.', '0334455667', 'Master of Science in Nutrition, Vegan Nutrition Certification');
 -- #endregion

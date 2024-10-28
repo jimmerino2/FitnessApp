@@ -1,6 +1,7 @@
 <?php
 function renderHeader($conn)
 {
+    include_once __DIR__ . '/../server/data.php';
     // Start session only if not already started
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -17,12 +18,7 @@ function renderHeader($conn)
     if (isset($_SESSION['userinput']) && $_SESSION['userinput']) { // Logged in
         // User
         $sql = 'SELECT memberName FROM member WHERE email IN (?)';
-        $stmt = mysqli_prepare($conn, $sql);
-        $stmt->bind_param('s', $_SESSION['userinput']);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result($username);
-        $stmt->fetch();
+        dataMapSql($sql, $conn, [$_SESSION['userinput']], $username);
         echo "<span class='username'>$username</span>";
         echo "<a href='../server/logout.php'><img src='../asset/image/logout.png' class='logout-icon'></a>";
     } else {

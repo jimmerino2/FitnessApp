@@ -1,3 +1,4 @@
+-- #region Table Creation
 -- Member Table
 CREATE TABLE IF NOT EXISTS Member (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +17,8 @@ CREATE TABLE IF NOT EXISTS Nutritionist (
     nutritionistName VARCHAR(50) NOT NULL,
     nutritonistDesc TEXT,
     nutritionistContact VARCHAR(12) NOT NULL,
-    studyRecord varchar(300)
+    studyRecord varchar(300),
+    UNIQUE (nutritionistContact)
 );
 
 -- Exercise Table
@@ -34,6 +36,7 @@ CREATE TABLE IF NOT EXISTS Classes (
     classDesc TEXT,
     classTime TIME NOT NULL,
     classType VARCHAR(50) NOT NULL
+    UNIQUE (className);
 );
 
 -- HealthRecord Table
@@ -71,3 +74,9 @@ CREATE TABLE IF NOT EXISTS Enrollment (
     FOREIGN KEY (memberID) REFERENCES Member(id),
     FOREIGN KEY (classID) REFERENCES Classes(id)
 );
+-- #endregion
+
+-- #region Data Insertion
+-- Nutritionist Data
+
+-- #endregion

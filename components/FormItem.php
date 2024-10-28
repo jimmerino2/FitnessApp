@@ -8,6 +8,15 @@ function renderFormItemText($title = "Title", $name = "Name", $placeholder = "Pl
     </div>
     ";
 }
+function renderFormItemTextarea($title = "Title", $name = "Name", $placeholder = "Placeholder")
+{
+    echo "
+    <div class='form-item'>
+        <h3 class='form-title'>$title</h3>
+        <textarea name='$name' placeholder='$placeholder' class='form-input'></textarea>
+    </div>
+    ";
+}
 
 function renderFormItemRadio($title = "Title", $name, $values)
 {
@@ -27,6 +36,15 @@ function renderFormItemCalendar($title = "Title", $name)
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
         <input type='date' name='$name' class='form-input' required>
+    </div>
+    ";
+}
+function renderFormItemTime($title = "Title", $name)
+{
+    echo "
+    <div class='form-item'>
+        <h3 class='form-title'>$title</h3>
+        <input type='time' name='$name' class='form-input' required>
     </div>
     ";
 }
@@ -76,5 +94,9 @@ function renderFormItemPassword($title = "Title", $name = "Name", $placeholder =
     .form-radio {
         width: auto;
         margin: 0px 20px 10px 0px;
+    }
+
+    textarea {
+        max-width: 100%;
     }
 </style>

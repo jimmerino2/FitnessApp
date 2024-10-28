@@ -23,6 +23,7 @@
     renderClassBoxFlex();
     renderNutBox('', 'Name', 'Hi im a nutritionist');
     renderClassBoxFlex();
+    renderFooter();
     ?>
 </body>
 

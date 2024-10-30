@@ -22,8 +22,8 @@ function renderAdvertise()
 function renderClassBoxFlex()
 {
     echo "<div class='classbox-flex'>";
-    renderClassBox('Class1', 'RM30');
-    renderClassBox('Class2', 'RM50');
+    renderClassBox('Class1', 'RM50');
+    renderClassBox('Class2', 'RM100');
     echo "</div>";
 }
 ?>

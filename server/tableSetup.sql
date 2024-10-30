@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Classes (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     className VARCHAR(50) NOT NULL,
     classDesc TEXT,
-    classTime TIME NOT NULL,
+    price DECIMAL(5,2) NOT NULL,
     classType VARCHAR(50) NOT NULL,
     UNIQUE (className)
 );
@@ -70,9 +70,8 @@ CREATE TABLE IF NOT EXISTS Enrollment (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     memberID INT(6) UNSIGNED NOT NULL,
     classID INT(6) UNSIGNED NOT NULL,
-    date DATE NOT NULL,
-    time TIME NOT NULL,
-    price DECIMAL(5,2) NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
     FOREIGN KEY (memberID) REFERENCES Member(id),
     FOREIGN KEY (classID) REFERENCES Classes(id)
 );
@@ -87,3 +86,7 @@ INSERT IGNORE INTO Nutritionist (nutritionistName, nutritonistDesc, nutritionist
     ('David Brown', 'Registered dietitian specializing in pediatric nutrition.', '0223344556', 'Bachelor of Science in Dietetics, Pediatric Nutrition Certification'),
     ('Eva Green', 'Expert in vegan and plant-based diets.', '0334455667', 'Master of Science in Nutrition, Vegan Nutrition Certification');
 -- #endregion
+
+INSERT IGNORE INTO Classes (className, classDesc, price, classType) VALUES
+    ('Test1', 'Experienced dietitian specializing in sports nutrition.', '50.00', 'I'),
+    ('Test2', 'Clinical nutritionist with a focus on chronic illness management.', '100.00', 'M');

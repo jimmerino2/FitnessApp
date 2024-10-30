@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . '/Buttons.php';
+include_once __DIR__ . '/../server/data.php';
 
 function renderClassBox($text1, $text2)
 {
@@ -7,7 +8,12 @@ function renderClassBox($text1, $text2)
     <div class=\"class-box\">
         <h1 class=\"class-box-title\">$text1</h1>
         <p class=\"class-box-description\">$text2</p>";
-    renderMediumButton('', '', 'Class', '');
+    
+    if (isset($_SESSION['userinput'])) { // Logged in 
+        renderMediumButton('../pages/form_enrollment.php', '', 'Class', '');
+    } else { // Not Logged in
+        renderMediumButton('../pages/form_login.php', '', 'Class', '');
+    }
     echo "</div>";
 }
 
@@ -79,4 +85,6 @@ function renderNutBox($image, $name, $description)
         flex-direction: column;
         justify-content: flex-end;
     }
+
 </style>
+

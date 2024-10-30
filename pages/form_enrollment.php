@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body
-style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
+    style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
     <form id='loginForm' name='loginForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
         <div style='justify-items:center;'>
             <h2>Classes</h2>
@@ -19,9 +21,9 @@ style="display: flex; justify-content: center; align-items: center; min-height: 
             $conn->select_db('fitnessapp');
 
             $currentDate = date('Y-m-d');
-           
 
-            
+
+
             include_once __DIR__ . '/../components/FormItem.php';
             renderFormItemRadio("Classes", "classID", ['1' => "Test1 (RM50)", '2' => "Test2 (RM100)"]);
             echo "
@@ -58,11 +60,12 @@ style="display: flex; justify-content: center; align-items: center; min-height: 
             include_once __DIR__ . '/../components/Buttons.php';
             renderSmallButton('classes.php', '', 'Back', 'button');
             renderSmallButton('', '', 'Submit', 'submit');
-            
+
             ?>
         </div>
     </form>
 </body>
+
 </html>
 
 <?php
@@ -73,17 +76,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $classID = $_POST['classID'];
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
-   
-  
+
+
 
     // memberID
     $sql = 'SELECT id FROM member WHERE email = ?';
     dataMapSql($sql, $conn, [$_SESSION['userinput']], $memberID);
 
-    
+
 
     $sql = 'INSERT INTO Enrollment (memberID, classID, startDate, endDate) VALUES (?, ?, ?, ?)';
-    dataInsertSQL($sql, $conn, [$memberID, $classID, $startDate, $endDate]);
+    dataInsertSql($sql, $conn, [$memberID, $classID, $startDate, $endDate]);
 
     echo '<meta http-equiv="refresh" content="0;url=home_page.php">';
     exit();

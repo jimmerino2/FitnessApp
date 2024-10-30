@@ -11,10 +11,12 @@
     <?php
     include_once __DIR__ . '/../layout/header.php';
     include_once __DIR__ . '/../components/ConsultantItem.php';
+    include_once __DIR__ . '/../components/Buttons.php';
     include_once __DIR__ . '/../server/connectDB.php';
+    include_once __DIR__ . '/../server/data.php';
     $conn->select_db('fitnessapp');
     renderHeader($conn);
-
+    renderFixedButton('../pages/record_consultation.php', '../asset/image/record.png');
     // Selecting all nutritionists
     $sql = 'SELECT * FROM Nutritionist';
     $stmt = $pdo->prepare($sql);
@@ -22,15 +24,7 @@
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Map data to array
-    $nutritionists = [];
-    foreach ($results as $row) {
-        $nutritionists[] = [
-            'nutritionistName' => $row['nutritionistName'],
-            'nutritonistDesc' => $row['nutritonistDesc'],
-            'nutritionistContact' => $row['nutritionistContact'],
-            'studyRecord' => $row['studyRecord'],
-        ];
-    }
+    $nutritionists = dataGetResultSql($sql, $pdo, [], ['nutritionistName', 'nutritionistDesc', 'nutritionistContact', 'studyRecord', 'nutritonistDesc']);
     ?>
 
     <div style="width: 80%">

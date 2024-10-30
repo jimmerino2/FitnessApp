@@ -28,8 +28,16 @@ function renderMediumButton($link, $function, $text, $inputType)
         </button>
     </a>";
 }
-?>
 
+function renderFixedButton($link, $imageLink)
+{
+    echo "
+    <a class='fixedButton' href='$link'>
+        <div class='roundedFixedBtn'><img src='$imageLink' style='width:80%;'></div>
+     </a>
+    ";
+}
+?>
 <style>
     .small-button {
         background-color: grey;
@@ -61,5 +69,26 @@ function renderMediumButton($link, $function, $text, $inputType)
         padding: 10px 30px;
         margin: 20px;
         box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .fixedButton {
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+        padding: 20px;
+        width: fit-content;
+    }
+
+    .roundedFixedBtn {
+        display: flex;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        padding: 5px;
+        background-color: #4CAF50;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
     }
 </style>

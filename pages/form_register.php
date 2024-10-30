@@ -89,10 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!$error) {
         $sql = "INSERT INTO member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = dataInsertSQL($sql, $conn, [$name, $contact, $hashed_pass, $gender, $email, $birthday]);
+        $stmt = dataInsertSql($sql, $conn, [$name, $contact, $hashed_pass, $gender, $email, $birthday]);
         if ($stmt->affected_rows > 0) {
-            header("Location: home_page.php");
-            exit();
+            echo '<meta http-equiv="refresh" content="0;url=record_consultation.php">';
         }
     } else {
         echo "<script>alert(" . json_encode(trim($errMsg)) . ");</script>";

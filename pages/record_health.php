@@ -43,16 +43,20 @@
   include_once __DIR__ . '/../server/connectDB.php';
   $conn->select_db('fitnessapp');
   include_once __DIR__ . '/../layout/header.php';
+  include_once __DIR__ . '/../components/Buttons.php';
   include_once __DIR__ . '/../layout/footer.php';
 
   renderHeader($conn);
+  renderFixedButton('../pages/form_health.php', '../asset/image/record.png');
   ?>
 
   <table style="width:95%">
+    
     <tr>
       <th>Date: </th>
       <th>Time: </th>
     </tr>
+
     <tr>
       <td>Weight: </td>
       <td>Water Intake: </td>
@@ -60,20 +64,21 @@
       <td>Duration: </td>
       <td>Calories Burnt: </td>
     </tr>
+
     <tr>
-      <td>j</td>
-      <td>i</td>
-      <td>m</td>
-      <td>m</td>
-      <td>y</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
+
   </table>
-  <a class="fixedButton" href="form_enrollment.php" alt="Add Record">
-    <div class="roundedFixedBtn"><i class="fa fa-phone"></i></div>
-  </a>
+
   <?php
   renderFooter();
   ?>
+
 </body>
 
 </html>

@@ -4,40 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title>Health Record</title>
 
-<body
-    style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
-    <form id='loginForm' name='loginForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
-        <div style='justify-items:center;'>
-            <h2>Classes</h2>
-
-            <?php
-            include_once __DIR__ . '/../server/connectDB.php';
-            include_once __DIR__ . '/../components/ConsultantItem.php';
-            include_once __DIR__ . '/../layout/header.php';
-            session_start();
-            $conn->select_db('fitnessapp');
-
-            $currentDate = date('Y-m-d');
-
-
-
-            include_once __DIR__ . '/../components/FormItem.php';
-            renderFormItemRadio("Classes", "classID", ['1' => "Test1 (RM50)", '2' => "Test2 (RM100)"]);
-            echo "
-            <div class='form-item'>
-                <h3 class='form-title'>Set Start Date</h3>
-                <input type='date' id='startDate' name='startDate' min='$currentDate'class='form-input' required>
-            </div>
-            
-            <div class='form-item'>
-                <h3 class='form-title'>Set End Date</h3>
-                <input type='date' id='endDate' name='endDate' class='form-input' required>
-            </div>
-
-            <script>
+    <script>
                 const startDateInput = document.getElementById('startDate');
                 const endDateInput = document.getElementById('endDate');
 
@@ -55,10 +24,31 @@
                     }
                 });
             </script>
-            ";
+</head>
+
+<body
+    style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
+    <form id='loginForm' name='loginForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
+        <div style='justify-items:center;'>
+            <h2>Health Record</h2>
+
+            <?php
+            include_once __DIR__ . '/../server/connectDB.php';
+            include_once __DIR__ . '/../components/ConsultantItem.php';
+            include_once __DIR__ . '/../layout/header.php';
+            $conn->select_db('fitnessapp');
+
+            include_once __DIR__ . '/../components/FormItem.php';
+            renderFormItemTime('Set Time', 'recordTime');
+            renderFormItemCalendar('Set Date', 'recordDate');
+
+            renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60');
+            renderFormItemText('Set Water Intake(ml)', 'waterIntake', 'Example: 3000');
+
+            renderFormItemSelect('Set Exercise', 'exerciseType', ['C' => 'Cardio', 'W' => 'Weight Lifting', 'Y' => 'Yoga', 'P' => 'Pilates']);
 
             include_once __DIR__ . '/../components/Buttons.php';
-            renderSmallButton('classes.php', '', 'Back', 'button');
+            renderSmallButton('record_health.php', '', 'Back', 'button');
             renderSmallButton('', '', 'Submit', 'submit');
 
             ?>

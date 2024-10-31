@@ -30,6 +30,21 @@ function renderFormItemRadio($title = "Title", $name, $values)
     echo "</div>";
 }
 
+function renderFormItemSelect($title, $name, $values)
+{
+    echo "
+    <div class='form-item'>
+        <h3 class='form-title'>$title</h3>
+            <select name='$name'>
+    ";
+    foreach ($values as $value => $label) {
+        echo "
+        <option value='$value'>$label</option>
+        ";
+    }
+    echo "</select></div>";
+}
+
 function renderFormItemCalendar($title = "Title", $name)
 {
     echo "
@@ -82,7 +97,7 @@ function renderFormItemPassword($title = "Title", $name = "Name", $placeholder =
         margin-bottom: 8px;
     }
 
-    .form-input {
+    .form-input, select {
         height: 25px;
         width: 100%;
         padding: 5px;
@@ -94,6 +109,10 @@ function renderFormItemPassword($title = "Title", $name = "Name", $placeholder =
     .form-radio {
         width: auto;
         margin: 0px 20px 10px 0px;
+    }
+
+    select{
+        height: auto;
     }
 
     textarea {

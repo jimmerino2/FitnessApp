@@ -45,11 +45,16 @@ function renderTable($id, $title, $content, $deleteLink)
     table {
         border: 1px solid black;
         border-collapse: collapse;
+        width:100%;
     }
 
     td,
     th {
         padding: 7.5px;
         text-align: left;
+    }
+    
+    table{
+        table-layout: fixed;
     }
 </style>

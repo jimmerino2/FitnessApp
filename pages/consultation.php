@@ -17,7 +17,11 @@
     include_once __DIR__ . '/../server/data.php';
     $conn->select_db('fitnessapp');
     renderHeader($conn);
-    renderFixedButton('../pages/record_consultation.php', '../asset/image/record.png');
+    if (isset($_SESSION['userinput'])) { // Logged in 
+        renderFixedButton('../pages/record_enrollment.php', '../asset/image/record.png');
+    } else { // Not Logged in
+       
+    }
     // Selecting all nutritionists
     $sql = 'SELECT * FROM Nutritionist';
     $nutritionists = dataGetResultSql($sql, $pdo, [], ['nutritionistName', 'nutritionistDesc', 'nutritionistContact', 'studyRecord', 'nutritonistDesc']);

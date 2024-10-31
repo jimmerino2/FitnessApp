@@ -31,3 +31,17 @@ if (isset($_SESSION['enrollmentID'])) {
     exit;
 }
 echo $_GET['enrollmentID'];
+
+if (isset($_GET['adminConsultationID'])) {
+    $_SESSION['adminConsultationID'] = $_GET['adminConsultationID'];
+}
+
+if (isset($_SESSION['adminConsultationID'])) {
+    $sql = 'DELETE FROM Consultation WHERE id = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$_SESSION['adminConsultationID']]);
+    unset($_SESSION['adminConsultationID']);
+    header('Location: ../pages/admin.php');
+    exit;
+}
+echo $_GET['consultationID'];

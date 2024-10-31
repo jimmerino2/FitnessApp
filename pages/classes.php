@@ -45,7 +45,11 @@
     include_once __DIR__ . '/../layout/footer.php';
     include_once __DIR__ . '/../components/HomepageItem.php';
     renderHeader($conn);
-    renderFixedButton('../pages/record_enrollment.php', '../asset/image/record.png');
+    if (isset($_SESSION['userinput'])) { // Logged in 
+        renderFixedButton('../pages/record_enrollment.php', '../asset/image/record.png');
+    } else { // Not Logged in
+       
+    }
     ?>
     <div class = "title">
          <h1 style="font-size: 30px; text-align: center; color: darkblue;">Our Classes</h1>

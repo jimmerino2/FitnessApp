@@ -92,7 +92,7 @@ INSERT IGNORE INTO Classes (className, classDesc, price, classType) VALUES
     ('Test1', 'Experienced dietitian specializing in sports nutrition.', '50.00', 'I'),
     ('Test2', 'Clinical nutritionist with a focus on chronic illness management.', '100.00', 'M');
 
--- Exercise Data
-INSERT IGNORE INTO Exercise (startTime, endTime, date, exerciseType) VALUES
-    ('09:00:00', '10:00:00', '2024-03-20', 'Cardio'),
-    ('14:00:00', '15:00:00', '2024-03-20', 'Yoga');
+
+INSERT IGNORE INTO Member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES
+    ('Admin', '0182677327', '$2y$10$pOxEQA/GHhosK5qVRWyVdexsLMLsK/f9NwaaVpQ8HfjiOb09DLIJC', 'f', 'admin@gmail.com', '2005-10-21');
+    

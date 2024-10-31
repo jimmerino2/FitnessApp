@@ -90,3 +90,8 @@ INSERT IGNORE INTO Nutritionist (nutritionistName, nutritonistDesc, nutritionist
 INSERT IGNORE INTO Classes (className, classDesc, price, classType) VALUES
     ('Test1', 'Experienced dietitian specializing in sports nutrition.', '50.00', 'I'),
     ('Test2', 'Clinical nutritionist with a focus on chronic illness management.', '100.00', 'M');
+
+
+INSERT IGNORE INTO Member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES
+    ('Admin', '0182677327', '$2y$10$pOxEQA/GHhosK5qVRWyVdexsLMLsK/f9NwaaVpQ8HfjiOb09DLIJC', 'f', 'admin@gmail.com', '2005-10-21');
+    

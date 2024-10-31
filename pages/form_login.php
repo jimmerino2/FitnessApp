@@ -58,7 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($pass, $hashed_password)) {
             $_SESSION['userinput'] = $email;
+            if ($email === 'admin@gmail.com') {
+                header("Location: admin.php"); 
+            } else{
             header("Location:home_page.php");
+            }
         } else {
             echo "<script>alert('Invalid username or password.')</script>";
         }

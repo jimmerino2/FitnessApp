@@ -25,21 +25,36 @@
 
 
             include_once __DIR__ . '/../components/FormItem.php';
+            renderFormItemRadio("Classes", "classID", ['1' => "Test1 (RM50)", '2' => "Test2 (RM100)"]);
             echo "
             <div class='form-item'>
-                <h3 class='form-title'>Set Weight</h3>
-                <input type='text' id='weight' name='weight' class='form-input' required>
+                <h3 class='form-title'>Set Start Date</h3>
+                <input type='date' id='startDate' name='startDate' min='$currentDate'class='form-input' required>
             </div>
             
             <div class='form-item'>
-                <h3 class='form-title'>Set Water Intake</h3>
-                <input type='text' id='waterIntake' name='waterIntake' class='form-input' required>
+                <h3 class='form-title'>Set End Date</h3>
+                <input type='date' id='endDate' name='endDate' class='form-input' required>
             </div>
 
-            <div class='form-item'>
-                <h3 class='form-title'>Set Calories</h3>
-                <input type='text' id='calories' name='calories' class='form-input' required>
-            </div>
+            <script>
+                const startDateInput = document.getElementById('startDate');
+                const endDateInput = document.getElementById('endDate');
+
+                // Function to update endDate minimum based on startDate
+                startDateInput.addEventListener('change', function() {
+                    const startDateValue = new Date(this.value);
+                    if (startDateValue) {
+                        // Add one month to startDate for endDate minimum
+                        const minEndDate = new Date(startDateValue);
+                        minEndDate.setMonth(minEndDate.getMonth() + 1);
+
+                        // Format date as YYYY-MM-DD for the input field
+                        const formattedDate = minEndDate.toISOString().split('T')[0];
+                        endDateInput.min = formattedDate;
+                    }
+                });
+            </script>
             ";
 
             include_once __DIR__ . '/../components/Buttons.php';
@@ -62,13 +77,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
 
+
+
     // memberID
     $sql = 'SELECT id FROM member WHERE email = ?';
     dataMapSql($sql, $conn, [$_SESSION['userinput']], $memberID);
 
+
+
     $sql = 'INSERT INTO Enrollment (memberID, classID, startDate, endDate) VALUES (?, ?, ?, ?)';
     dataInsertSql($sql, $conn, [$memberID, $classID, $startDate, $endDate]);
 
-    echo '<meta http-equiv="refresh" content="0;url=record_enrollment.php">';
+    echo '<meta http-equiv="refresh" content="0;url=home_page.php">';
     exit();
 }

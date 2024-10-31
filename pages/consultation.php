@@ -9,6 +9,7 @@
 
 <body style="margin: 0px;">
     <?php
+    session_start();
     include_once __DIR__ . '/../layout/header.php';
     include_once __DIR__ . '/../components/ConsultantItem.php';
     include_once __DIR__ . '/../components/Buttons.php';
@@ -19,11 +20,6 @@
     renderFixedButton('../pages/record_consultation.php', '../asset/image/record.png');
     // Selecting all nutritionists
     $sql = 'SELECT * FROM Nutritionist';
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Map data to array
     $nutritionists = dataGetResultSql($sql, $pdo, [], ['nutritionistName', 'nutritionistDesc', 'nutritionistContact', 'studyRecord', 'nutritonistDesc']);
     ?>
 

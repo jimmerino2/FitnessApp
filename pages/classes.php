@@ -10,6 +10,8 @@
             background:linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3)), url("../asset/image/classTitleImg.jpg");
             background-size: 100% 100%;
             background-repeat: no-repeat;
+            position: sticky;
+            top:165.5px;
         }
         .paragraph{
             text-align: center;
@@ -31,6 +33,7 @@
 </head>
 
 <body style="margin:0px;">
+<body style="margin:0px;">
     <?php
     session_start();
     include_once __DIR__ . '/../server/connectDB.php';
@@ -38,7 +41,11 @@
     include_once __DIR__ . '/../layout/header.php';
     include_once __DIR__ . '/../layout/footer.php';
     include_once __DIR__ . '/../components/HomepageItem.php';
+    include_once __DIR__ . '/../layout/header.php';
+    include_once __DIR__ . '/../layout/footer.php';
+    include_once __DIR__ . '/../components/HomepageItem.php';
     renderHeader($conn);
+    renderFixedButton('../pages/record_enrollment.php', '../asset/image/record.png');
     ?>
     <div class = "title">
          <h1 style="font-size: 30px; text-align: center; color: darkblue;">Our Classes</h1>
@@ -56,50 +63,6 @@
         <h1>Class 2</h1>
         <p>xxxxxxxxxxxxxxxxxxxxxxx</p>
         <p>xxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-    </div>
-    <div class="enrollmentRecord">
-        <?php
-            
-
-            if (isset($_SESSION['userinput']) && $_SESSION['userinput']) {
-                // Fetch member name and other details if needed
-                $sql = 'SELECT memberName, ID FROM member WHERE email = ?';
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param('s', $_SESSION['userinput']);
-                $stmt->execute();
-                $stmt->bind_result($username, $memberID);
-                $stmt->fetch();
-                $stmt->close();
-            
-                // Check if a valid member ID was returned
-                if ($memberID) {
-                    // Display enrollments for the logged-in member
-                    $sql = "SELECT C.className, E.startDate, E.endDate 
-                            FROM Enrollment E 
-                            INNER JOIN Classes C ON E.classID = C.ID 
-                            WHERE E.memberID = ?";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param('i', $memberID);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-            
-                    if ($result->num_rows > 0) {
-                        // Output data of each row
-                        while ($row = $result->fetch_assoc()) {
-                            echo "Class: " . $row["className"] . " - Start Date: " . $row["startDate"] . " - End Date: " . $row["endDate"] . "<br>";
-                        }
-                    } else {
-                        echo "No enrollments found.";
-                    }
-                    $stmt->close();
-                } else {
-                    echo "Member not found.";
-                }
-            } else {
-                
-            }
-            
-        ?>
     </div>
 </body>
 

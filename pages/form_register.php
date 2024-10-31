@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../asset/css/style.css">
 </head>
 
 <body
@@ -55,8 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = false;
 
     // Check Contact Number
-    if (!preg_match('/^\d{10}$/', $contact)) {
-        $errMsg .= "Contact Number must have 10 numbers.";
+    if (!preg_match('/^\d{10,11}$/', $contact)) {
+        $errMsg .= "Contact Number must have 10 or 11 numbers.";
         $error = true;
     }
 
@@ -91,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = dataInsertSql($sql, $conn, [$name, $contact, $hashed_pass, $gender, $email, $birthday]);
         if ($stmt->affected_rows > 0) {
-            echo '<meta http-equiv="refresh" content="0;url=record_consultation.php">';
+            echo '<meta http-equiv="refresh" content="0;url=form_login.php">';
         }
     } else {
         echo "<script>alert(" . json_encode(trim($errMsg)) . ");</script>";

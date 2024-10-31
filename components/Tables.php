@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/Buttons.php';
-function renderTableConsultationUser($id, $title, $content)
+function renderTable($id, $title, $content, $deleteLink)
 {
     echo "
     <div class='container_parent'>
@@ -23,7 +23,7 @@ function renderTableConsultationUser($id, $title, $content)
         </table>
         <div style='display:flex; justify-content:end; padding: 10px;'>";
 
-    renderSmallButton("../server/deleteRecord.php?consultationID=$id", '', 'Remove Record', 'button');
+    renderSmallButton("$deleteLink=$id", '', 'Remove Record', 'button');
 
     echo "</div></div>";
 }

@@ -24,9 +24,10 @@ CREATE TABLE IF NOT EXISTS Nutritionist (
 -- Exercise Table
 CREATE TABLE IF NOT EXISTS Exercise (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    duration INT NOT NULL,
-    calories INT NOT NULL,
-    exerciseType VARCHAR(50) NOT NULL
+    startTime TIME NOT NULL,
+    endTime TIME NOT NULL,
+    date DATE NOT NULL,
+    exerciseType VARCHAR(50) NOT NULL,
 );
 
 -- Classes Table
@@ -90,3 +91,8 @@ INSERT IGNORE INTO Nutritionist (nutritionistName, nutritonistDesc, nutritionist
 INSERT IGNORE INTO Classes (className, classDesc, price, classType) VALUES
     ('Test1', 'Experienced dietitian specializing in sports nutrition.', '50.00', 'I'),
     ('Test2', 'Clinical nutritionist with a focus on chronic illness management.', '100.00', 'M');
+
+--Excercise Data
+INSERT IGNORE INTO Excercise (startTime, endTime, date, exerciseType) VALUES
+    ('00:00:00','00:01:00', '2008-11-11', 'Cardio'),
+    ('00:00:00','00:01:00', '2008-11-11', 'Yoga');

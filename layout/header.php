@@ -41,7 +41,7 @@ function renderHeader($conn)
 
     // Check if user is logged in to display HealthRecord link
     if (isset($_SESSION['userinput'])) { // Logged in 
-        echo "<li><a class='nav-link' href='../pages/health_record.php'>HEALTH RECORD</a></li>";
+        echo "<li><a class='nav-link' href='../pages/record_health.php'>HEALTH RECORD</a></li>";
     } else { // Not Logged in
         echo "<li><a class='nav-link' href='../pages/form_login.php'>HEALTH RECORD</a></li>";
     }

@@ -20,7 +20,7 @@ function dataMapSql($sql, $conn, $params, &$mappedVar)
     $stmt_check->close();
 }
 
-function dataInsertSQL($sql, $conn, $params)
+function dataInsertSql($sql, $conn, $params)
 {
     $stmt = mysqli_prepare($conn, $sql);
     $types = str_repeat('s', count($params));
@@ -36,6 +36,26 @@ function dataInsertSQL($sql, $conn, $params)
     $stmt->execute();
 
     return $stmt;
+}
+
+function dataGetResultSql($sql, $pdo, $params, $values)
+{
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $mappedArray = [];
+    foreach ($results as $row) {
+        $mappedRow = [];
+        foreach ($values as $value) {
+            if (isset($row[$value])) {
+                $mappedRow[$value] = $row[$value];
+            }
+        }
+        $mappedArray[] = $mappedRow;
+    }
+
+    return $mappedArray;
 }
 
 // Checker code

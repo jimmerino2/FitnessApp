@@ -72,8 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     dataMapSql($sql, $conn, [$_SESSION['consultantContact']], $consultantID);
 
     $sql = 'INSERT INTO Consultation (memberID, nutritionistID, date, time, comment, status) VALUES (?, ?, ?, ?, ?, ?)';
-    dataInsertSQL($sql, $conn, [$memberID, $consultantID, $date, $time, $comment, $status]);
+    dataInsertSql($sql, $conn, [$memberID, $consultantID, $date, $time, $comment, $status]);
 
-    echo '<meta http-equiv="refresh" content="0;url=home_page.php">';
+    echo '<meta http-equiv="refresh" content="0;url=record_consultation.php">';
     exit();
 }

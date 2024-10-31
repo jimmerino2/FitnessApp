@@ -33,10 +33,14 @@
 </head>
 
 <body style="margin:0px;">
+<body style="margin:0px;">
     <?php
     session_start();
     include_once __DIR__ . '/../server/connectDB.php';
     $conn->select_db('fitnessapp');
+    include_once __DIR__ . '/../layout/header.php';
+    include_once __DIR__ . '/../layout/footer.php';
+    include_once __DIR__ . '/../components/HomepageItem.php';
     include_once __DIR__ . '/../layout/header.php';
     include_once __DIR__ . '/../layout/footer.php';
     include_once __DIR__ . '/../components/HomepageItem.php';

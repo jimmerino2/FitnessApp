@@ -68,7 +68,7 @@
       <td>y</td>
     </tr>
   </table>
-  <a class="fixedButton" href="add_health_record.php" alt="Add Record">
+  <a class="fixedButton" href="form_enrollment.php" alt="Add Record">
     <div class="roundedFixedBtn"><i class="fa fa-phone"></i></div>
   </a>
   <?php

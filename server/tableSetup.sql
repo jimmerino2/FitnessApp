@@ -24,8 +24,9 @@ CREATE TABLE IF NOT EXISTS Nutritionist (
 -- Exercise Table
 CREATE TABLE IF NOT EXISTS Exercise (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    duration INT NOT NULL,
-    calories INT NOT NULL,
+    startTime TIME NOT NULL,
+    endTime TIME NOT NULL,
+    date DATE NOT NULL,
     exerciseType VARCHAR(50) NOT NULL
 );
 

@@ -19,11 +19,6 @@
     renderFixedButton('../pages/record_consultation.php', '../asset/image/record.png');
     // Selecting all nutritionists
     $sql = 'SELECT * FROM Nutritionist';
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Map data to array
     $nutritionists = dataGetResultSql($sql, $pdo, [], ['nutritionistName', 'nutritionistDesc', 'nutritionistContact', 'studyRecord', 'nutritonistDesc']);
     ?>
 

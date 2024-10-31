@@ -18,7 +18,7 @@
     $conn->select_db('fitnessapp');
     renderHeader($conn);
     if (isset($_SESSION['userinput'])) { // Logged in 
-        renderFixedButton('../pages/record_enrollment.php', '../asset/image/record.png');
+        renderFixedButton('../pages/record_consultation.php', '../asset/image/record.png');
     } else { // Not Logged in
        
     }

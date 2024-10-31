@@ -35,7 +35,8 @@ function renderTable($id, $title, $content, $deleteLink)
         flex-direction: column;
         position: relative;
         padding: 10px;
-        margin: 0px 20px;
+        max-width: 1400px;
+        margin-inline: auto;
         /* Stack content vertically */
     }
 

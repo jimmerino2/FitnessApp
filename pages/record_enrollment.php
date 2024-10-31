@@ -24,7 +24,7 @@
 
     if (count($enrollmentList) !== 0) {
         foreach ($enrollmentList as $enrollment) {
-            renderTableConsultationUser($enrollment['enrollmentID'], '', ['Class Name' => $enrollment['className'], 'Start Date' => $enrollment['startDate'], 'End Date' => $enrollment['endDate']], '../server/deleteRecord.php?enrollmentID');
+            renderTable($enrollment['enrollmentID'], '', ['Class Name' => $enrollment['className'], 'Start Date' => $enrollment['startDate'], 'End Date' => $enrollment['endDate']], '../server/deleteRecord.php?enrollmentID');
         }
     } else {
         echo 'no results lol';

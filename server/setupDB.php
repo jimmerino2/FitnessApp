@@ -10,8 +10,6 @@ if ($conn->connect_error) {
 }
 
 // Automatically create DB if not exist
-// $sql = "DROP DATABASE IF EXISTS fitnessapp";
-// $conn->query($sql);
 $sql = "CREATE DATABASE IF NOT EXISTS fitnessapp";
 $conn->query($sql);
 

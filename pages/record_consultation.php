@@ -30,7 +30,7 @@
         $sql = 'SELECT nutritionistContact FROM Nutritionist WHERE nutritionistContact = ?';
         dataMapSql($sql, $conn, [$_SESSION['consultantContact']], $consultantContact);
         foreach ($consultationList as $consultation) {
-            renderTableConsultationUser($consultation['id'], $consultation['date'] . '&nbsp&nbsp&nbsp' . $consultation['time'], ['Consultant Name' => $consultantName, 'Consultant Contact' => $consultantContact, 'Comment Written' => $consultation['comment'], 'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'], '../server/deleteRecord.php?consultationID');
+            renderTable($consultation['id'], $consultation['date'] . '&nbsp&nbsp&nbsp' . $consultation['time'], ['Consultant Name' => $consultantName, 'Consultant Contact' => $consultantContact, 'Comment Written' => $consultation['comment'], 'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'], '../server/deleteRecord.php?consultationID');
         }
     } else {
         echo 'no records lol';

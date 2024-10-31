@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/Buttons.php';
-function renderTableConsultationUser($id, $title, $content, $deleteLink)
+function renderTable($id, $title, $content, $deleteLink)
 {
     echo "
     <div class='container_parent'>

@@ -25,10 +25,34 @@ function renderNutBox($image, $name, $description)
         <div class=\"nutriDesc\">
             <h2 class=\"nut-box-name\">$name</h2>
             <p class=\"nut-box-description\">$description</p>
-        </div>";
-    echo "<div class=\"button-container\">";
-    renderSmallButton('', '', 'Next', '');
-    echo "</div></div>";
+        </div>
+        <div class=\"button-container\">
+            <!-- Add any buttons if needed -->
+        </div>
+    </div>";
+    echo "
+    <script> //Script for renderNutBox
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let slides = document.getElementsByClassName(\"nut-box\");
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = \"none\";
+        }
+
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+
+        slides[slideIndex - 1].style.display = \"flex\";
+
+        setTimeout(showSlides, 3000);  //3 seconds
+    }
+    </script>
+    ";
 }
 ?>
 
@@ -55,9 +79,10 @@ function renderNutBox($image, $name, $description)
     .nut-box {
         padding: 10px;
         border: 1px solid black;
-        display: flex;
+        display: none; /* Hide all initially */
         justify-content: center;
         margin: 10px 300px;
+        animation: fade 1s ease-in-out forwards;
     }
 
     .nut-box-image {
@@ -86,5 +111,13 @@ function renderNutBox($image, $name, $description)
         justify-content: flex-end;
     }
 
-</style>
+    .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+    }
 
+    @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+    }
+</style>

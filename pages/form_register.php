@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = dataInsertSql($sql, $conn, [$name, $contact, $hashed_pass, $gender, $email, $birthday]);
         if ($stmt->affected_rows > 0) {
-            echo '<meta http-equiv="refresh" content="0;url=record_consultation.php">';
+            echo '<meta http-equiv="refresh" content="0;url=form_login.php">';
         }
     } else {
         echo "<script>alert(" . json_encode(trim($errMsg)) . ");</script>";

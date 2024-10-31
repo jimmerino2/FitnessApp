@@ -23,7 +23,7 @@
          <h1 style=\"font-size: 30px; text-align: center;\">Our Classes</h1>
          ";
     renderClassBoxFlex();
-    renderNutBox('../asset/image/toji.jpg', 'Name', 'Hi im a nutritionist');
+    renderSlideShow();
     renderFooter();
     ?>
 </body>

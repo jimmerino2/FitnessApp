@@ -9,6 +9,7 @@
 
 <body style="margin: 0px;">
     <?php
+    session_start();
     include_once __DIR__ . '/../layout/header.php';
     include_once __DIR__ . '/../components/ConsultantItem.php';
     include_once __DIR__ . '/../components/Buttons.php';

@@ -17,8 +17,8 @@
             include_once __DIR__ . '/../server/connectDB.php';
             include_once __DIR__ . '/../components/ConsultantItem.php';
             include_once __DIR__ . '/../layout/header.php';
-            session_start();
             $conn->select_db('fitnessapp');
+            session_start();
 
             // Get the Consultant's details
             $_SESSION['consultantContact'] = $_GET['consultantContact'];

@@ -56,8 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = false;
 
     // Check Contact Number
-    if (!preg_match('/^\d{10}$/', $contact)) {
-        $errMsg .= "Contact Number must have 10 numbers.";
+    if (!preg_match('/^\d{10,11}$/', $contact)) {
+        $errMsg .= "Contact Number must have 10 or 11 numbers.";
         $error = true;
     }
 

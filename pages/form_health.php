@@ -1,49 +1,59 @@
+<?php
+session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Health Record</title>
+
+    <script>
+                const startDateInput = document.getElementById('startDate');
+                const endDateInput = document.getElementById('endDate');
+
+                // Function to update endDate minimum based on startDate
+                startDateInput.addEventListener('change', function() {
+                    const startDateValue = new Date(this.value);
+                    if (startDateValue) {
+                        // Add one month to startDate for endDate minimum
+                        const minEndDate = new Date(startDateValue);
+                        minEndDate.setMonth(minEndDate.getMonth() + 1);
+
+                        // Format date as YYYY-MM-DD for the input field
+                        const formattedDate = minEndDate.toISOString().split('T')[0];
+                        endDateInput.min = formattedDate;
+                    }
+                });
+            </script>
 </head>
 
 <body
     style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
     <form id='loginForm' name='loginForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
         <div style='justify-items:center;'>
-            <h2>Classes</h2>
-
+            <h2>Health Record</h2>
+                
             <?php
             include_once __DIR__ . '/../server/connectDB.php';
             include_once __DIR__ . '/../components/ConsultantItem.php';
             include_once __DIR__ . '/../layout/header.php';
-            session_start();
             $conn->select_db('fitnessapp');
 
-            $currentDate = date('Y-m-d');
-
-
-
             include_once __DIR__ . '/../components/FormItem.php';
-            echo "
-            <div class='form-item'>
-                <h3 class='form-title'>Set Weight</h3>
-                <input type='text' id='weight' name='weight' class='form-input' required>
-            </div>
-            
-            <div class='form-item'>
-                <h3 class='form-title'>Set Water Intake</h3>
-                <input type='text' id='waterIntake' name='waterIntake' class='form-input' required>
-            </div>
+            renderFormItemTime('Set Time', 'time');
+            renderFormItemCalendar('Set Date', 'date');
 
-            <div class='form-item'>
-                <h3 class='form-title'>Set Calories</h3>
-                <input type='text' id='calories' name='calories' class='form-input' required>
-            </div>
-            ";
+            renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60');
+            renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000');
+
+            renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga']);
+            renderFormItemTime('Start Time', 'startTime');
+            renderFormItemTime('End Time', 'endTime');
 
             include_once __DIR__ . '/../components/Buttons.php';
-            renderSmallButton('classes.php', '', 'Back', 'button');
+            renderSmallButton('record_health.php', '', 'Back', 'button');
             renderSmallButton('', '', 'Submit', 'submit');
 
             ?>
@@ -58,17 +68,21 @@
 include_once __DIR__ . '/../server/data.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $classID = $_POST['classID'];
-    $startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
+    $time = $_POST['time'];
+    $date = $_POST['date'];
+    $startTime = $_POST['startTime'];
+    $endTime = $_POST['endTime'];
+    $water = $_POST['water'];
+    $weight = $_POST['weight'];
+    $exerciseID = $_POST['exerciseID'];
 
     // memberID
     $sql = 'SELECT id FROM member WHERE email = ?';
     dataMapSql($sql, $conn, [$_SESSION['userinput']], $memberID);
 
-    $sql = 'INSERT INTO Enrollment (memberID, classID, startDate, endDate) VALUES (?, ?, ?, ?)';
-    dataInsertSql($sql, $conn, [$memberID, $classID, $startDate, $endDate]);
+    $sql = 'INSERT INTO HealthRecord (memberID, time, date, water, weight, startTime, endTime, exerciseID) VALUES (?, ?, ?, ?, ? ,? ,? ,?)';
+    dataInsertSql($sql, $conn, [$memberID ,$time, $date, $water, $weight, $startTime, $endTime, $exerciseID]);
 
-    echo '<meta http-equiv="refresh" content="0;url=record_enrollment.php">';
+    echo '<meta http-equiv="refresh" content="0;url=record_health.php">';
     exit();
 }

@@ -19,22 +19,35 @@
     echo "<h2 style='text-align: center; font-size:48px;'>Admin Side Consultation Record</h2>";
 
     // Show all records that correspond to the user
-    $sql = 'SELECT c.ID AS adminConsultationID, c.date, c.time, c.comment, c.status, c.nutritionistID, n.nutritionistName, n.nutritionistContact, c.memberID, m.memberName 
+    $sql = 'SELECT c.ID AS adminConsultationID, c.date, c.time, c.comment, c.status, c.nutritionistID, n.nutritionistName, n.nutritionistContact, c.memberID, m.memberName, m.email 
             FROM Consultation c
             JOIN Nutritionist n ON c.nutritionistID = n.ID
             JOIN Member m ON c.memberID = m.ID';
-    $consultationList = dataGetResultSql($sql, $pdo, [], ['adminConsultationID','date', 'time','nutritionistID', 'nutritionistName', 'nutritionistContact','comment', 'status', 'memberID', 'memberName']);
-
-    if (!empty($consultationList)) {
-        foreach ($consultationList as $consultation) {
-            renderTable($consultation['adminConsultationID'], $consultation['date'] . '&nbsp;&nbsp;&nbsp;' . $consultation['time'], [
-                 'Member ID' => $consultation['memberID'],
-                'Member Name' => $consultation['memberName'],
+    $consultationList = dataGetResultSql($sql, $pdo, [], ['adminConsultationID','date', 'time','nutritionistID', 'nutritionistName', 'nutritionistContact','comment', 'status', 'memberID', 'memberName','email']);
+    
+    $groupedConsultations = [];
+    foreach ($consultationList as $consultation) {
+    $groupedConsultations[$consultation['memberID']]['memberName'] = $consultation['memberName'];
+    $groupedConsultations[$consultation['memberID']]['consultations'][] = $consultation;
+    }
+    
+    if (!empty($groupedConsultations)) {
+        foreach ($groupedConsultations as $memberID => $memberData) {
+            $memberName = $memberData['memberName'];
+            $memberEmail = $memberData['consultations'][0]['email']; 
+            echo "<h3 style='text-align:center; font-size:24px;'>Member: $memberName (ID: $memberID, Email: $memberEmail)</h3>";
+    
+            foreach ($memberData['consultations'] as $consultation) {
+                $statusText = $consultation['status'] ? 'Approved' : 'Pending Approval';
+            renderAdminTable($consultation['adminConsultationID'], '', [
                 'Nutritionist Name' => $consultation['nutritionistName'],
                 'Nutritionist Contact' => $consultation['nutritionistContact'],
+                'Consultation Date' => $consultation['date'],
+                'Consultation Time' => $consultation['time'],
                 'Comment Written' => $consultation['comment'],
                 'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'], '../server/deleteRecord.php?adminConsultationID');
         }
+    }
     } else {
         echo 'no records lol';
     }

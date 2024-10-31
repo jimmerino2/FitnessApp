@@ -46,7 +46,7 @@
                     <th>Consultation Time</th>
                     <th>Comment Written</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th></th>
                 </tr>";
             
             // Add all consultations for this member

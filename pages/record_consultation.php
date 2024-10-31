@@ -28,7 +28,7 @@
     dataMapSql($sql, $conn, [$_SESSION['consultantContact']], $consultantContact);
 
     foreach ($consultationList as $consultation) {
-        renderTableConsultationUser($consultation['id'], $consultation['date'] . '&nbsp&nbsp&nbsp' . $consultation['time'], ['Consultant Name' => $consultantName, 'Consultant Contact' => $consultantContact, 'Comment Written' => $consultation['comment'], 'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved']);
+        renderTableConsultationUser($consultation['id'], $consultation['date'] . '&nbsp&nbsp&nbsp' . $consultation['time'], ['Consultant Name' => $consultantName, 'Consultant Contact' => $consultantContact, 'Comment Written' => $consultation['comment'], 'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'], '../server/deleteRecord.php?consultationID');
     }
     ?>
 </body>

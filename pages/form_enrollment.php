@@ -88,6 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = 'INSERT INTO Enrollment (memberID, classID, startDate, endDate) VALUES (?, ?, ?, ?)';
     dataInsertSql($sql, $conn, [$memberID, $classID, $startDate, $endDate]);
 
-    echo '<meta http-equiv="refresh" content="0;url=home_page.php">';
+    echo '<meta http-equiv="refresh" content="0;url=record_enrollment.php">';
     exit();
 }

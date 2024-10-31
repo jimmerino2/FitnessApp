@@ -24,9 +24,7 @@ CREATE TABLE IF NOT EXISTS Nutritionist (
 -- Exercise Table
 CREATE TABLE IF NOT EXISTS Exercise (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    startTime TIME NOT NULL,
-    endTime TIME NOT NULL,
-    date DATE NOT NULL,
+    calPerMin DECIMAL(5,2) NOT NULL,
     exerciseType VARCHAR(50) NOT NULL
 );
 
@@ -49,6 +47,8 @@ CREATE TABLE IF NOT EXISTS HealthRecord (
     date DATE NOT NULL,
     time TIME NOT NULL,
     water INT NOT NULL,
+    startTime TIME NOT NULL,
+    endTime TIME NOT NULL,
     FOREIGN KEY (memberID) REFERENCES Member(id),
     FOREIGN KEY (exerciseID) REFERENCES Exercise(id)
 );
@@ -95,4 +95,7 @@ INSERT IGNORE INTO Classes (className, classDesc, price, classType) VALUES
 
 INSERT IGNORE INTO Member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES
     ('Admin', '0182677327', '$2y$10$pOxEQA/GHhosK5qVRWyVdexsLMLsK/f9NwaaVpQ8HfjiOb09DLIJC', 'f', 'admin@gmail.com', '2005-10-21');
-    
+
+INSERT IGNORE INTO Exercise (calPerMin, exerciseType) VALUES
+    ('6.6', 'Yoga'),
+    ('10', 'Cardio');

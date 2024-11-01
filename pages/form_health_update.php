@@ -53,12 +53,12 @@
                 $_SESSION['health_id'] = $healthId;
                 include_once __DIR__ . '/../components/FormItem.php';
 
-                renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60');
-                renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000');
+                renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60',$health['weight']);
+                renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000',$health['water']);
 
-                renderFormItemSelect('Set Exercise', 'exerciseID', ['4' => 'Pilates', '3' => 'Strengh Training', '2' => 'Cardio', '1' => 'Yoga']);
-                renderFormItemTime('Start Time', 'startTime','','','');
-                renderFormItemTime('End Time', 'endTime','','','');
+                renderFormItemSelect('Set Exercise', 'exerciseID', ['4' => 'Pilates', '3' => 'Strengh Training', '2' => 'Cardio', '1' => 'Yoga'], $health['exerciseID']);
+                renderFormItemTime('Start Time', 'startTime','','',$health['startTime']);
+                renderFormItemTime('End Time', 'endTime','','',$health['endTime']);
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');

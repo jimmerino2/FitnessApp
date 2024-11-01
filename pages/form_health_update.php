@@ -57,8 +57,8 @@
                 renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000');
 
                 renderFormItemSelect('Set Exercise', 'exerciseID', ['4' => 'Pilates', '3' => 'Strengh Training', '2' => 'Cardio', '1' => 'Yoga']);
-                renderFormItemTime('Start Time', 'startTime','','');
-                renderFormItemTime('End Time', 'endTime','','');
+                renderFormItemTime('Start Time', 'startTime','','','');
+                renderFormItemTime('End Time', 'endTime','','','');
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');

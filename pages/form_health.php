@@ -29,9 +29,7 @@ session_start(); ?>
                 renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60');
                 renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000');
 
-                renderFormItemSelect('Set Exercise', 'exerciseID', ['4' => 'Pilates', '3' => 'Strengh Training', '2' => 'Cardio', '1' => 'Yoga']);
-
-                renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga']);
+                renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga', '3' => 'Strength Training', '4' => 'Pilates']);
                 renderFormItemTime('Start Time', 'startTime','','','');
                 renderFormItemTime('End Time', 'endTime','','','');
 
@@ -63,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = 'SELECT id FROM member WHERE email = ?';
     dataMapSql($sql, $conn, [$_SESSION['userinput']], $memberID);
 
-    $sql = 'INSERT INTO HealthRecord (memberID, time, date, water, weight, startTime, endTime, exerciseID) VALUES (?, ?, ?, ?, ? ,? ,? ,?)';
+    $sql = 'INSERT INTO HealthRecord (memberID, time, date, water, weight, startTime, endTime, exerciseID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
     dataInsertSql($sql, $conn, [$memberID, $time, $date, $water, $weight, $startTime, $endTime, $exerciseID]);
 
     echo '<meta http-equiv="refresh" content="0;url=record_health.php">';

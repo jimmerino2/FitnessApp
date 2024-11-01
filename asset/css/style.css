@@ -4,3 +4,9 @@
     font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+body {
+    margin: 0px;
+    background-color: #dfebf2;
+    padding: 0px;
+}
+

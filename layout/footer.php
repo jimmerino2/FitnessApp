@@ -2,7 +2,7 @@
 function renderFooter()
 {
     echo "
-    <div style ='background-color:lightgrey; padding:15px 0px'>
+    <div style ='background-color:lightgrey; padding:15px 0px;'>
         <div class='bigContainer' style='display:flex; justify-content:space-around'>
             <div class='companyName'>
                 <h2>About</h2>

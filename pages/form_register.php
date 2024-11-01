@@ -6,34 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../asset/css/forms.css">
 </head>
 
-<body
-    style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
-    <form id='regiForm' name='registerForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
-        <div style='justify-items:center;'>
-            <h2 style="margin-bottom: 25px;">Register Form</h2>
+<body>
+    <div class="form_container">
+        <form id='regiForm' name='registerForm' method='POST'>
+            <div style='justify-items:center;'>
+                <h2 style="margin-bottom: 25px;">Register Form</h2>
 
-            <div style="width: 70%;"><a href="form_login.php" style="text-decoration: none; color: blue;">Have an
-                    account? Log in
-                    instead.</a></div>
+                <div style="width: 70%;"><a href="form_login.php">Have an
+                        account? Log in
+                        instead.</a></div>
 
-            <?php
-            include_once __DIR__ . '/../components/FormItem.php';
-            include_once __DIR__ . '/../components/Buttons.php';
-            renderFormItemText("Name", "name", "Enter Your Name");
-            renderFormItemText("Contact Number", "contact", "0123456789");
-            renderFormItemEmail("Email", "email", "xxx@gmail.com");
-            renderFormItemPassword("Set Password (10+ Characters)", "pass", "Enter Password");
-            renderFormItemPassword("Confirm Password", "pass_conf", "Confirm Password");
-            renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female"]);
-            renderFormitemCalendar("Date of Birth", 'birthday');
+                <?php
+                include_once __DIR__ . '/../components/FormItem.php';
+                include_once __DIR__ . '/../components/Buttons.php';
+                renderFormItemText("Name", "name", "Enter Your Name");
+                renderFormItemText("Contact Number", "contact", "0123456789");
+                renderFormItemEmail("Email", "email", "xxx@gmail.com");
+                renderFormItemPassword("Set Password (10+ Characters)", "pass", "Enter Password");
+                renderFormItemPassword("Confirm Password", "pass_conf", "Confirm Password");
+                renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female"]);
+                renderFormitemCalendar("Date of Birth", 'birthday');
 
-            renderSmallButton('home_page.php', '', 'Back', 'button');
-            renderSmallButton('', '', 'Register', 'submit');
-            ?>
-        </div>
-    </form>
+                renderSmallButton('home_page.php', '', 'Back', 'button', '#FF8080', 'black');
+                renderSmallButton('', '', 'Register', 'submit', '#1FAB89', 'black');
+                ?>
+            </div>
+        </form>
+    </div>
 
 </body>
 

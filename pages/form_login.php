@@ -6,33 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../asset/css/forms.css">
 </head>
 
-<body
-    style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
-    <form id='loginForm' name='loginForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
-        <div style='justify-items:center;'>
-            <h2>Login Form</h2>
+<body>
+    <div class="form_container">
+        <form id='loginForm' name='loginForm' method='POST'>
+            <div style='justify-items:center;'>
+                <h2>Login Form</h2>
 
-            <?php
-            include_once __DIR__ . '/../components/FormItem.php';
-            renderFormItemEmail("Email Address", "email", "xxx@gmail.com");
-            renderFormItemPassword("Password", "pass", "Enter Password");
-            ?>
-            <div style='width:70%; margin:2.5px 0px;'>
-                <a href='form_forgot_pw.php' style='text-decoration:none; color:blue;'>Forgot Password</a>
+                <?php
+                include_once __DIR__ . '/../components/FormItem.php';
+                renderFormItemEmail("Email Address", "email", "xxx@gmail.com");
+                renderFormItemPassword("Password", "pass", "Enter Password");
+                ?>
+                <div style='width:70%; margin:2.5px 0px;'>
+                    <a href='form_forgot_pw.php'>Forgot Password</a>
+                </div>
+                <div style='width:70%'>
+                    <a href='form_register.php'>Create an Account</a>
+                </div><br>
+
+                <?php
+                include_once __DIR__ . '/../components/Buttons.php';
+                renderSmallButton('home_page.php', '', 'Back', 'button', '#FF8080', 'black');
+                renderSmallButton('', '', 'Login', 'submit', '#1FAB89', 'black');
+                ?>
             </div>
-            <div style='width:70%'>
-                <a href='form_register.php' style='text-decoration:none; color:blue;'>Create an Account</a>
-            </div><br>
-
-            <?php
-            include_once __DIR__ . '/../components/Buttons.php';
-            renderSmallButton('home_page.php', '', 'Back', 'button');
-            renderSmallButton('', '', 'Login', 'submit');
-            ?>
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
 
 </html>
@@ -60,9 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($pass, $hashed_password)) {
             $_SESSION['userinput'] = $email;
             if ($email === 'admin@gmail.com') {
-                header("Location: admin.php"); 
-            } else{
-            header("Location:home_page.php");
+                header("Location: admin.php");
+            } else {
+                header("Location:home_page.php");
             }
         } else {
             echo "<script>alert('Invalid username or password.')</script>";

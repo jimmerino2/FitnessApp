@@ -1,9 +1,9 @@
 <?php
-function renderSmallButton($link, $function, $text, $inputType)
+function renderSmallButton($link, $function, $text, $inputType, $bgColor, $txtColor)
 {
     echo "
     <a href=\"$link\" style=\"text-decoration: none;\">
-        <button type=\"$inputType\" onclick=\"$function\" class=\"small-button\">
+        <button type=\"$inputType\" onclick=\"$function\" class=\"small-button\" style='background-color:$bgColor; color:$txtColor;'>
             $text
         </button>
     </a>";
@@ -40,11 +40,13 @@ function renderFixedButton($link, $imageLink)
 ?>
 <style>
     .small-button {
-        background-color: grey;
-        border-color: black;
-        padding: 8px 15px;
+        padding: 8px 24px;
+        font-weight: bold;
         margin: 5px;
         cursor: pointer;
+        border: none;
+        border-radius: 15%;
+        font-size: 13px;
     }
 
     .big-button {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +18,10 @@
 
     .header {
         display: flex;
+        align-items: center;
         padding: 10px;
         background-color: white;
+        height: 80px;
     }
 
     .logo {
@@ -27,8 +30,9 @@
     }
 
     .header-title {
-        color: #185c28;
         padding-left: 10px;
+        display: flex;
+        align-items: center;
     }
 
     .profile-section {
@@ -55,7 +59,7 @@
     }
 
     .nav-menu {
-        background-color: #d6ffe0;
+        background-color: #7AB2D3;
     }
 
     .nav-menu ul {
@@ -80,40 +84,40 @@
 </style>
 
 <body>
-<?php
-// I need to include the css file here
+    <?php
+    // I need to include the css file here
+    
+    function renderHeader($conn)
+    {
+        include_once __DIR__ . '/../server/data.php';
+        // Start session only if not already started
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-function renderHeader($conn)
-{
-    include_once __DIR__ . '/../server/data.php';
-    // Start session only if not already started
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    echo "
+        echo "
     <div class='header-container'>
         <header class='header'>
             <img src='../asset/image/fitness.png' class='logo'>
             <h1 class='header-title'>Huan Fitness</h1>
             <div class='profile-section'>";
 
-    // Profile section
-    if (isset($_SESSION['userinput']) && $_SESSION['userinput']) { // Logged in
-        // User
-        $sql = 'SELECT memberName FROM member WHERE email IN (?)';
-        dataMapSql($sql, $conn, [$_SESSION['userinput']], $username);
-        echo "<span class='username'>$username</span>";
-        echo "<a href='../server/logout.php'><img src='../asset/image/logout.png' class='logout-icon'></a>";
-    } else {
-        // Guest
-        echo "<span class='username'>Guest</span>";
-        echo "<div class='login-icon-container'>
+        // Profile section
+        if (isset($_SESSION['userinput']) && $_SESSION['userinput']) { // Logged in
+            // User
+            $sql = 'SELECT memberName FROM member WHERE email IN (?)';
+            dataMapSql($sql, $conn, [$_SESSION['userinput']], $username);
+            echo "<span class='username'>$username</span>";
+            echo "<a href='../server/logout.php'><img src='../asset/image/logout.png' class='logout-icon'></a>";
+        } else {
+            // Guest
+            echo "<span class='username'>Guest</span>";
+            echo "<div class='login-icon-container'>
                 <a href='../pages/form_login.php'><img src='../asset/image/user.png' class='login-icon'></a>
               </div>";
-    }
+        }
 
-    echo "
+        echo "
             </div>
         </header>
 
@@ -123,19 +127,20 @@ function renderHeader($conn)
                 <li><a class='nav-link' href='../pages/consultation.php'>CONSULTATION</a></li>
                 <li><a class='nav-link' href='../pages/classes.php'>CLASSES</a></li>";
 
-    // Check if user is logged in to display HealthRecord link
-    if (isset($_SESSION['userinput'])) { // Logged in 
-        echo "<li><a class='nav-link' href='../pages/record_health.php'>HEALTH RECORD</a></li>";
-    } else { // Not Logged in
-        echo "<li><a class='nav-link' href='../pages/form_login.php'>HEALTH RECORD</a></li>";
-    }
+        // Check if user is logged in to display HealthRecord link
+        if (isset($_SESSION['userinput'])) { // Logged in 
+            echo "<li><a class='nav-link' href='../pages/record_health.php'>HEALTH RECORD</a></li>";
+        } else { // Not Logged in
+            echo "<li><a class='nav-link' href='../pages/form_login.php'>HEALTH RECORD</a></li>";
+        }
 
-    echo "
+        echo "
                 <li class='about-us'><a class='nav-link' href='../pages/about.php'>ABOUT US</a></li>
             </ul>
         </nav>
     </div>";
-}
-?>
+    }
+    ?>
 </body>
+
 </html>

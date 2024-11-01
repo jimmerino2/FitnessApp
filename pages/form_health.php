@@ -10,25 +10,6 @@ session_start(); ?>
     <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="stylesheet" href="../asset/css/forms.css">
     <title>Health Record</title>
-
-    <script>
-        const startDateInput = document.getElementById('startDate');
-        const endDateInput = document.getElementById('endDate');
-
-        // Function to update endDate minimum based on startDate
-        startDateInput.addEventListener('change', function () {
-            const startDateValue = new Date(this.value);
-            if (startDateValue) {
-                // Add one month to startDate for endDate minimum
-                const minEndDate = new Date(startDateValue);
-                minEndDate.setMonth(minEndDate.getMonth() + 1);
-
-                // Format date as YYYY-MM-DD for the input field
-                const formattedDate = minEndDate.toISOString().split('T')[0];
-                endDateInput.min = formattedDate;
-            }
-        });
-    </script>
 </head>
 
 <body>

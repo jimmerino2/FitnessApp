@@ -30,7 +30,7 @@ function renderFormItemRadio($title = "Title", $name, $values)
     echo "</div>";
 }
 
-function renderFormItemSelect($title, $name, $values)
+function renderFormItemSelect($title, $name, $values,$currentValue)
 {
     echo "
     <div class='form-item'>
@@ -38,8 +38,9 @@ function renderFormItemSelect($title, $name, $values)
             <select name='$name'>
     ";
     foreach ($values as $value => $label) {
+        $selected = ($value == $currentValue) ? 'selected' : '';
         echo "
-        <option value='$value'>$label</option>
+         <option value='$value' $selected>$label</option>
         ";
     }
     echo "</select></div>";

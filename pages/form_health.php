@@ -49,7 +49,7 @@ session_start(); ?>
                 renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60');
                 renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000');
 
-                renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga', '3' => 'Weight Lifting', '4' => 'Pilates']);
+                renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga', '3' => 'Weight Lifting', '4' => 'Pilates'], '');
                 renderFormItemTime('Start Time', 'startTime','','','');
                 renderFormItemTime('End Time', 'endTime','','','');
 

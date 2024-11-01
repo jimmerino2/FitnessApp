@@ -43,15 +43,15 @@ session_start(); ?>
                 $conn->select_db('fitnessapp');
 
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemTime('Set Time', 'time');
-                renderFormItemCalendar('Set Date', 'date');
+                renderFormItemTime('Set Time', 'time', '','');
+                renderFormItemCalendar('Set Date', 'date','','');
 
                 renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60');
                 renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000');
 
                 renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga']);
-                renderFormItemTime('Start Time', 'startTime');
-                renderFormItemTime('End Time', 'endTime');
+                renderFormItemTime('Start Time', 'startTime','','');
+                renderFormItemTime('End Time', 'endTime','','');
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');

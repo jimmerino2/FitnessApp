@@ -20,7 +20,6 @@
                 include_once __DIR__ . '/../server/connectDB.php';
                 include_once __DIR__ . '/../server/data.php';
                 include_once __DIR__ . '/../components/ConsultantItem.php';
-                session_start();
                 $conn->select_db('fitnessapp');
 
                 $currentDate = date('Y-m-d');

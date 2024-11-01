@@ -8,12 +8,12 @@ function renderFormItemText($title = "Title", $name = "Name", $placeholder = "Pl
     </div>
     ";
 }
-function renderFormItemTextarea($title = "Title", $name = "Name", $placeholder = "Placeholder")
+function renderFormItemTextarea($title = "Title", $name = "Name", $placeholder = "Placeholder", $value)
 {
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <textarea name='$name' placeholder='$placeholder' class='form-input'></textarea>
+        <textarea name='$name' placeholder='$placeholder' value= '$value'class='form-input'></textarea>
     </div>
     ";
 }
@@ -45,21 +45,21 @@ function renderFormItemSelect($title, $name, $values)
     echo "</select></div>";
 }
 
-function renderFormItemCalendar($title = "Title", $name,$min, $max)
+function renderFormItemCalendar($title = "Title", $name,$min, $max, $value)
 {
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <input type='date' name='$name' min='$min' max='$max' class='form-input' required>
+        <input type='date' name='$name' min='$min' max='$max' value= '$value'class='form-input' required>
     </div>
     ";
 }
-function renderFormItemTime($title = "Title", $name, $min, $max)
+function renderFormItemTime($title = "Title", $name, $min, $max, $value)
 {
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <input type='time' name='$name' min='$min' max='$max' class='form-input' required>
+        <input type='time' name='$name' min='$min' max='$max' value='$value'class='form-input' required>
     </div>
     ";
 }

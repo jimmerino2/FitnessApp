@@ -48,7 +48,7 @@ if (isset($_GET['adminConsultationID'])) {
     }
 }
 
-// Delete Enrollment
+// Delete Health Record
 if (isset($_GET['healthID'])) {
     $_SESSION['healthID'] = $_GET['healthID'];
     

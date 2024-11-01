@@ -47,3 +47,18 @@ if (isset($_GET['adminConsultationID'])) {
         exit;
     }
 }
+
+// Delete Enrollment
+if (isset($_GET['healthID'])) {
+    $_SESSION['healthID'] = $_GET['healthID'];
+    
+    if (isset($_SESSION['healthID'])) {
+        $sql = 'DELETE FROM healthRecord WHERE id = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $_SESSION['healthID']);
+        $stmt->execute();
+        unset($_SESSION['healthID']);
+        header('Location: ../pages/record_health.php');
+        exit;
+    }
+}

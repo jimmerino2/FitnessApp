@@ -10,25 +10,6 @@ session_start(); ?>
     <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="stylesheet" href="../asset/css/forms.css">
     <title>Health Record</title>
-
-    <script>
-        const startDateInput = document.getElementById('startDate');
-        const endDateInput = document.getElementById('endDate');
-
-        // Function to update endDate minimum based on startDate
-        startDateInput.addEventListener('change', function () {
-            const startDateValue = new Date(this.value);
-            if (startDateValue) {
-                // Add one month to startDate for endDate minimum
-                const minEndDate = new Date(startDateValue);
-                minEndDate.setMonth(minEndDate.getMonth() + 1);
-
-                // Format date as YYYY-MM-DD for the input field
-                const formattedDate = minEndDate.toISOString().split('T')[0];
-                endDateInput.min = formattedDate;
-            }
-        });
-    </script>
 </head>
 
 <body>
@@ -39,7 +20,6 @@ session_start(); ?>
 
                 <?php
                 include_once __DIR__ . '/../server/connectDB.php';
-                include_once __DIR__ . '/../components/ConsultantItem.php';
                 $conn->select_db('fitnessapp');
 
                 include_once __DIR__ . '/../components/FormItem.php';
@@ -49,7 +29,11 @@ session_start(); ?>
                 renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60');
                 renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000');
 
+<<<<<<< HEAD
                 renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga', '3' => 'Weight Lifting', '4' => 'Pilates'], '');
+=======
+                renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga', '3' => 'Strength Training', '4' => 'Pilates']);
+>>>>>>> 3d25a50cd73732e2ce8af89ed7b22739a5c5e518
                 renderFormItemTime('Start Time', 'startTime','','','');
                 renderFormItemTime('End Time', 'endTime','','','');
 

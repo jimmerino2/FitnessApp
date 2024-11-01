@@ -1,10 +1,10 @@
 <?php
-function renderFormItemText($title = "Title", $name = "Name", $placeholder = "Placeholder")
+function renderFormItemText($title = "Title", $name = "Name", $placeholder = "Placeholder", $value)
 {
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <input type='text' name='$name' placeholder='$placeholder' class='form-input' required>
+        <input type='text' name='$name' placeholder='$placeholder' class='form-input' value='$value' required>
     </div>
     ";
 }

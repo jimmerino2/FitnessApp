@@ -13,7 +13,7 @@ function renderFormItemTextarea($title = "Title", $name = "Name", $placeholder =
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <textarea name='$name' placeholder='$placeholder' value= '$value'class='form-input'></textarea>
+        <textarea name='$name' placeholder='$placeholder' class='form-input'>$value</textarea>
     </div>
     ";
 }

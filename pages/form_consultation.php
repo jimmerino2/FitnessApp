@@ -38,9 +38,10 @@
                 }
                 renderNutritionistPreview('../asset/image/nutritionist' . $row['id'] . '.png', $row['nutritionistName'], $row['studyRecord']);
 
+                $currentDate = date('Y-m-d');
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemCalendar('Set Date', 'consultationDate');
-                renderFormItemTime('Set Time', 'consultationTime');
+                renderFormItemCalendar('Set Date', 'consultationDate',$currentDate, '');
+                renderFormItemTime('Set Time', 'consultationTime','','');
                 renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?');
 
                 include_once __DIR__ . '/../components/Buttons.php';

@@ -35,11 +35,7 @@
                 renderFormItemCalendar('Set Date', 'consultationDate',$currentDate, '', $consultation['date']);
                 renderFormItemTime('Set Time', 'consultationTime','','', $consultation['time']);
                 renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?', $consultation['comment']);
-<<<<<<< HEAD
                 renderFormItemSelect('Approve', 'status', ['0' => 'appending', '1' => 'approve'], $consultation['status']);
-=======
-                renderFormItemSelect('Approve', 'status', ['0' => 'appending', '1' => 'approve'],'');
->>>>>>> 3d25a50cd73732e2ce8af89ed7b22739a5c5e518
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('admin.php', '', 'Back', 'button', '#FF8080', 'black');

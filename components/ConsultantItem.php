@@ -44,12 +44,12 @@ function renderNutritionistDropdownBox($image, $name, $study, $contact, $desc, $
 
 function renderNutritionistPreview($image, $name, $study)
 {
-    echo "<div class='container_parent'>
+    echo "<div class='container_parent preview'>
     <img src='" . htmlspecialchars($image) . "' style='width: 160px;'>
     <div class='container_child'>
-        <h1 style='margin: 6px 4px;'>$name</h1>
+        <h2 style='margin: 6px 4px;'>$name</h1>
         <h3 style='margin: 6px 4px;'>$study</h2>
-        <h3 style='margin: 6px 4px;'>RM20</h4>
+        <h4 style='margin: 6px 4px;'>RM20</h4>
     </div>
 </div>";
 }
@@ -58,11 +58,17 @@ function renderNutritionistPreview($image, $name, $study)
 <style>
     .container_parent {
         display: flex;
-        border: 1px solid black;
+        background-color: white;
+        border: solid 1px black;
         position: relative;
-        padding: 10px;
+        padding: 15px;
         margin: 20px;
         /* Stack content vertically */
+    }
+
+    .preview {
+        border: none;
+        border-radius: 2.5%;
     }
 
     .container_child {

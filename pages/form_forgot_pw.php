@@ -5,30 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../asset/css/forms.css">
 </head>
 
-<body
-    style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
-    <form id='forgotForm' name='forgotForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
-        <div style='justify-items:center;'>
-            <h2>Forgot Password</h2>
+<body>
+    <div class="form_container">
+        <form id='forgotForm' name='forgotForm' method='POST'>
+            <div style='justify-items:center;'>
+                <h2>Forgot Password</h2>
 
-            <?php
-            include_once __DIR__ . '/../components/FormItem.php';
-            include_once __DIR__ . '/../components/Buttons.php';
-            renderFormItemText('Email Address', 'email', 'Enter email');
-            echo '<br>(Better verification system soon)<br>';
-            renderFormItemPassword('New Password', 'pass', 'Enter password');
-            renderFormItemPassword('Confirm Password', 'pass_conf', 'Confirm password');
+                <?php
+                include_once __DIR__ . '/../components/FormItem.php';
+                include_once __DIR__ . '/../components/Buttons.php';
+                renderFormItemText('Email Address', 'email', 'Enter email');
+                echo '<br>(Better verification system soon)<br>';
+                renderFormItemPassword('New Password', 'pass', 'Enter password');
+                renderFormItemPassword('Confirm Password', 'pass_conf', 'Confirm password');
 
-            echo "<div style='padding: 20px;'>";
-            renderSmallButton('', '', 'Confirm', 'submit');
-            renderSmallButton('home_page.php', '', 'Back', 'button');
-            renderSmallButton('form_login.php', '', 'Log In Instead', 'button');
-            echo "</div>";
-            ?>
-        </div>
-    </form>
+                echo "<div style='padding: 20px;'>";
+                renderSmallButton('home_page.php', '', 'Back', 'button', '#FF8080', 'black');
+                renderSmallButton('form_login.php', '', 'Login Instead', 'button', '#faa574', 'black');
+                renderSmallButton('', '', 'Confirm', 'submit', '#1FAB89', 'black');
+                echo "</div>";
+                ?>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

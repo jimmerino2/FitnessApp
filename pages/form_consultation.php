@@ -5,50 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+    <link rel="stylesheet" href="../asset/css/forms.css">
 
-<body
-    style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction:column;">
-    <form id='loginForm' name='loginForm' method='POST' style='border: 1px solid black; padding: 15px; width: 40rem;'>
-        <div style='justify-items:center;'>
-            <h2>Schedule Consultation</h2>
+<body>
+    <div class="form_container">
+        <form id='loginForm' name='loginForm' method='POST'>
+            <div style='justify-items:center;'>
+                <h2>Schedule Consultation</h2>
 
-            <?php
-            include_once __DIR__ . '/../server/connectDB.php';
-            include_once __DIR__ . '/../components/ConsultantItem.php';
-            include_once __DIR__ . '/../layout/header.php';
-            $conn->select_db('fitnessapp');
-            session_start();
+                <?php
+                include_once __DIR__ . '/../server/connectDB.php';
+                include_once __DIR__ . '/../components/ConsultantItem.php';
+                include_once __DIR__ . '/../layout/header.php';
+                $conn->select_db('fitnessapp');
+                session_start();
 
-            // Get the Consultant's details
-            $_SESSION['consultantContact'] = $_GET['consultantContact'];
-            $sql = 'SELECT * FROM Nutritionist WHERE nutritionistContact IN (?)';
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$_SESSION['consultantContact']]);
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Get the Consultant's details
+                $_SESSION['consultantContact'] = $_GET['consultantContact'];
+                $sql = 'SELECT * FROM Nutritionist WHERE nutritionistContact IN (?)';
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$_SESSION['consultantContact']]);
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Map data to array
-            $nutritionist = [];
-            foreach ($results as $row) {
-                $nutritionist[] = [
-                    'id' => $row['id'],
-                    'nutritionistName' => $row['nutritionistName'],
-                    'studyRecord' => $row['studyRecord']
-                ];
-            }
-            renderNutritionistPreview('../asset/image/nutritionist' . $row['id'] . '.png', $row['nutritionistName'], $row['studyRecord']);
+                // Map data to array
+                $nutritionist = [];
+                foreach ($results as $row) {
+                    $nutritionist[] = [
+                        'id' => $row['id'],
+                        'nutritionistName' => $row['nutritionistName'],
+                        'studyRecord' => $row['studyRecord']
+                    ];
+                }
+                renderNutritionistPreview('../asset/image/nutritionist' . $row['id'] . '.png', $row['nutritionistName'], $row['studyRecord']);
 
-            include_once __DIR__ . '/../components/FormItem.php';
-            renderFormItemCalendar('Set Date', 'consultationDate');
-            renderFormItemTime('Set Time', 'consultationTime');
-            renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?');
+                include_once __DIR__ . '/../components/FormItem.php';
+                renderFormItemCalendar('Set Date', 'consultationDate');
+                renderFormItemTime('Set Time', 'consultationTime');
+                renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?');
 
-            include_once __DIR__ . '/../components/Buttons.php';
-            renderSmallButton('consultation.php', '', 'Back', 'button');
-            renderSmallButton('', '', 'Submit', 'submit');
-            ?>
-        </div>
-    </form>
+                include_once __DIR__ . '/../components/Buttons.php';
+                renderSmallButton('consultation.php', '', 'Back', 'button', '#FF8080', 'black');
+                renderSmallButton('', '', 'Submit', 'submit', '#1FAB89', 'black');
+                ?>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

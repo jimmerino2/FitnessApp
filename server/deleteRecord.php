@@ -47,3 +47,18 @@ if (isset($_GET['adminConsultationID'])) {
         exit;
     }
 }
+
+// Delete Health Record
+if (isset($_GET['healthID'])) {
+    $_SESSION['healthID'] = $_GET['healthID'];
+    
+    if (isset($_SESSION['healthID'])) {
+        $sql = 'DELETE FROM healthrecord WHERE id = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $_SESSION['healthID']); // bind the parameter as integer
+        $stmt->execute();  // execute without parameters
+        unset($_SESSION['healthID']);
+        header('Location: ../pages/record_health.php');
+        exit;
+    }
+}

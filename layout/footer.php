@@ -10,8 +10,9 @@ function renderFooter()
             </div>
             <div class='links'>
                 <h2>Useful links</h2>
-                <a href='' style ='text-decoration: none; color:black'>Help</a><br>
-                <a href='' style ='text-decoration: none; color:black'>About us</a><br>
+                <a href='about.php' style ='text-decoration: none; color:black'>About us</a><br>
+                <a href='classes.php' style ='text-decoration: none; color:black'>Classes</a><br>
+                <a href='consultation.php' style ='text-decoration: none; color:black'>Consultants</a><br>
             </div>
             <div class='contact'>
                 <h2>Contact</h2>

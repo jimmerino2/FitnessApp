@@ -10,6 +10,28 @@
         td {
             word-wrap: break-word;
         }
+
+        .fixedButton2 {
+        position: fixed;
+        bottom: 0px;
+        right: 100px;
+        padding: 20px;
+        width: fit-content;
+    }
+
+    .roundedFixedBtn2 {
+        display: flex;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        padding: 5px;
+        background-color: #C62E2E;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
     </style>
 </head>
 
@@ -19,17 +41,25 @@
     include_once __DIR__ . '/../server/connectDB.php';
     include_once __DIR__ . '/../server/data.php';
     include_once __DIR__ . '/../components/Tables.php';
+    include_once __DIR__ . '/../components/SearchBar.php';
     $conn->select_db('fitnessapp');
     session_start();
     renderFixedButton('../server/logout.php', '../asset/image/logout.png');
+    echo "
+    <a class='fixedButton2' href=''>
+        <div class='roundedFixedBtn2'><img src='../asset/image/record.png' style='width:80%;'></div>
+     </a>";
     echo "<h2 style='text-align: center; font-size:48px;'>Admin Side Consultation Record</h2>";
+    renderSearchBar('Search By Nutrition Name');
 
+    $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
     // Show all records that correspond to the user
     $sql = 'SELECT c.ID AS adminConsultationID, c.date, c.time, c.comment, c.status, c.nutritionistID, n.nutritionistName, n.nutritionistContact, c.memberID, m.memberName, m.email 
             FROM Consultation c
             JOIN Nutritionist n ON c.nutritionistID = n.ID
-            JOIN Member m ON c.memberID = m.ID';
-    $consultationList = dataGetResultSql($sql, $pdo, [], ['adminConsultationID', 'date', 'time', 'nutritionistID', 'nutritionistName', 'nutritionistContact', 'comment', 'status', 'memberID', 'memberName', 'email']);
+            JOIN Member m ON c.memberID = m.ID
+            WHERE n.nutritionistName LIKE :search';
+    $consultationList = dataGetResultSql($sql, $pdo, ['search' => $search], ['adminConsultationID', 'date', 'time', 'nutritionistID', 'nutritionistName', 'nutritionistContact', 'comment', 'status', 'memberID', 'memberName', 'email']);
 
     $groupedConsultations = [];
     foreach ($consultationList as $consultation) {
@@ -59,7 +89,8 @@
                     <th>Consultation Time</th>
                     <th>Comment Written</th>
                     <th>Status</th>
-                    <th></th>
+                    <th>X</th>
+                    <th>+</th>
                 </tr>";
 
             // Add all consultations for this member
@@ -75,6 +106,9 @@
                     <td>$statusText</td>
                     <td>";
                 renderSmallButton("../server/deleteRecord.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Remove Record', 'button', '#FF8080', 'black');
+                echo "</td>
+                <td>";
+                renderSmallButton("../pages/form_admin_update.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Update Record', 'button', '#FF8080', 'black');
                 echo "</td>
                 </tr>";
             }

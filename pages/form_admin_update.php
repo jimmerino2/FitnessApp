@@ -12,7 +12,7 @@
     <div class="form_container">
         <form id='loginForm' name='loginForm' method='POST'>
             <div style='justify-items:center;'>
-                <h2>Schedule Consultation</h2>
+                <h2>Consultation Record Update</h2>
 
                 <?php
                 include_once __DIR__ . '/../server/connectDB.php';
@@ -20,24 +20,16 @@
                 $conn->select_db('fitnessapp');
                 session_start();
 
-                // Get the Consultant's details
-                $_SESSION['consultantContact'] = $_GET['consultantContact'];
-                $sql = 'SELECT * FROM Nutritionist WHERE nutritionistContact IN (?)';
+                $consultationId = $_GET['adminConsultationID'];
+
+                $sql = 'SELECT c.*
+                       FROM Consultation c 
+                       WHERE c.id = ?';
                 $stmt = $pdo->prepare($sql);
-                $stmt->execute([$_SESSION['consultantContact']]);
-                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt->execute([$consultationId]);
+                $consultation = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                // Map data to array
-                $nutritionist = [];
-                foreach ($results as $row) {
-                    $nutritionist[] = [
-                        'id' => $row['id'],
-                        'nutritionistName' => $row['nutritionistName'],
-                        'studyRecord' => $row['studyRecord']
-                    ];
-                }
-                renderNutritionistPreview('../asset/image/nutritionist' . $row['id'] . '.png', $row['nutritionistName'], $row['studyRecord']);
-
+                $_SESSION['consultation_id'] = $consultationId;
                 $currentDate = date('Y-m-d');
                 include_once __DIR__ . '/../components/FormItem.php';
                 renderFormItemCalendar('Set Date', 'consultationDate',$currentDate, '');
@@ -45,14 +37,13 @@
                 renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?');
 
                 include_once __DIR__ . '/../components/Buttons.php';
-                renderSmallButton('consultation.php', '', 'Back', 'button', '#FF8080', 'black');
+                renderSmallButton('admin.php', '', 'Back', 'button', '#FF8080', 'black');
                 renderSmallButton('', '', 'Submit', 'submit', '#1FAB89', 'black');
                 ?>
             </div>
         </form>
     </div>
 </body>
-
 </html>
 
 <?php
@@ -64,18 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $time = $_POST['consultationTime'];
     $comment = $_POST['comment'];
     $status = false;
+    $consultantID = $_SESSION['consultation_id'];
 
-    // memberID
-    $sql = 'SELECT id FROM member WHERE email = ?';
-    dataMapSql($sql, $conn, [$_SESSION['userinput']], $memberID);
 
-    // consultantID
-    $sql = 'SELECT id FROM nutritionist WHERE nutritionistContact = ?';
-    dataMapSql($sql, $conn, [$_SESSION['consultantContact']], $consultantID);
+    $sql = 'UPDATE Consultation SET date = ?, time = ? , comment = ?, status = ? WHERE id=? ';
+    dataInsertSql($sql, $conn, [$date, $time, $comment, $status, $consultantID]);
 
-    $sql = 'INSERT INTO Consultation (memberID, nutritionistID, date, time, comment, status) VALUES (?, ?, ?, ?, ?, ?)';
-    dataInsertSql($sql, $conn, [$memberID, $consultantID, $date, $time, $comment, $status]);
-
-    echo '<meta http-equiv="refresh" content="0;url=record_consultation.php">';
+    echo '<meta http-equiv="refresh" content="0;url=admin.php">';
     exit();
 }

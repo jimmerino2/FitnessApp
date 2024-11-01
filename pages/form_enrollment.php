@@ -16,6 +16,7 @@
                 <h2>Classes</h2>
 
                 <?php
+                session_start();
                 include_once __DIR__ . '/../server/connectDB.php';
                 include_once __DIR__ . '/../server/data.php';
                 include_once __DIR__ . '/../components/ConsultantItem.php';

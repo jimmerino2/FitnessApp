@@ -45,21 +45,21 @@ function renderFormItemSelect($title, $name, $values)
     echo "</select></div>";
 }
 
-function renderFormItemCalendar($title = "Title", $name)
+function renderFormItemCalendar($title = "Title", $name,$min, $max)
 {
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <input type='date' name='$name' class='form-input' required>
+        <input type='date' name='$name' min='$min' max='$max' class='form-input' required>
     </div>
     ";
 }
-function renderFormItemTime($title = "Title", $name)
+function renderFormItemTime($title = "Title", $name, $min, $max)
 {
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <input type='time' name='$name' class='form-input' required>
+        <input type='time' name='$name' min='$min' max='$max' class='form-input' required>
     </div>
     ";
 }

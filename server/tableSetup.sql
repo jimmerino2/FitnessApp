@@ -100,4 +100,6 @@ INSERT IGNORE INTO Member (memberName, memberContact, memberPassword, gender, em
 
 INSERT IGNORE INTO Exercise (calPerMin, exerciseType) VALUES
     ('6.6', 'Yoga'),
-    ('10', 'Cardio');
+    ('10', 'Cardio'),
+    ('4', 'Weight Lifting'),
+    ('5.5', 'Pilates');

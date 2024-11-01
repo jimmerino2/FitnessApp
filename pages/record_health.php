@@ -64,8 +64,7 @@
     $durationDecimal = $duration / 60; // Convert seconds to mins
     $totalCal = $durationDecimal * $health['calPerMin'];
 
-    renderTable($health['healthID'], $health['date'] . '&nbsp&nbsp&nbsp' . $health['time'], ['Weight(kg)' => $health['weight'], 'Water Intake(ml)' => $health['water'], 'Exercise' => $health['exerciseType'], 'Duration' => gmdate("H:i", $duration), 'Calories Burnt' => $totalCal] ,'../server/deleteRecord.php?healthID');
-    renderSmallButton("../pages/form_health_update.php?healthID={$health['healthID']}", '', 'Update Record', 'button', '#FF8080', 'black');
+    renderTable($health['healthID'], $health['date'] . '&nbsp&nbsp&nbsp' . $health['time'], ['Weight(kg)' => $health['weight'], 'Water Intake(ml)' => $health['water'], 'Exercise' => $health['exerciseType'], 'Duration' => gmdate("H:i", $duration), 'Calories Burnt' => $totalCal] ,'../server/deleteRecord.php?healthID', '../pages/form_health_update.php?healthID');
     
     }
 } else {

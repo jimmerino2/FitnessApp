@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/Buttons.php';
-function renderTable($id, $title, $content, $deleteLink)
+function renderTable($id, $title, $content, $deleteLink, $updateLink)
 {
     echo "
     <div class='container_parent'>
@@ -24,6 +24,12 @@ function renderTable($id, $title, $content, $deleteLink)
         <div style='display:flex; justify-content:end; padding: 10px;'>";
 
     renderSmallButton("$deleteLink=$id", '', 'Remove Record', 'button', '#FF8080', 'black');
+
+    if ($updateLink !== null) {
+        renderSmallButton("$updateLink=$id", '', 'Update Record', 'button', '#FF8080', 'black');
+        // Add some margin between buttons
+        echo "<span style='margin-right: 10px;'></span>";
+    }
 
     echo "</div></div>";
 }

@@ -23,7 +23,7 @@ function renderTable($id, $title, $content, $deleteLink)
         </table>
         <div style='display:flex; justify-content:end; padding: 10px;'>";
 
-    renderSmallButton("$deleteLink=$id", '', 'Remove Record', 'button');
+    renderSmallButton("$deleteLink=$id", '', 'Remove Record', 'button', '#FF8080', 'black');
 
     echo "</div></div>";
 }
@@ -46,7 +46,7 @@ function renderTable($id, $title, $content, $deleteLink)
     table {
         border: 1px solid black;
         border-collapse: collapse;
-        width:100%;
+        width: 100%;
     }
 
     td,
@@ -54,8 +54,8 @@ function renderTable($id, $title, $content, $deleteLink)
         padding: 7.5px;
         text-align: left;
     }
-    
-    table{
+
+    table {
         table-layout: fixed;
     }
 </style>

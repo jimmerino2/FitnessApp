@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="stylesheet" href="../asset/css/forms.css">
 
 <body>
@@ -16,7 +17,6 @@
                 <?php
                 include_once __DIR__ . '/../server/connectDB.php';
                 include_once __DIR__ . '/../components/ConsultantItem.php';
-                include_once __DIR__ . '/../layout/header.php';
                 $conn->select_db('fitnessapp');
                 session_start();
 

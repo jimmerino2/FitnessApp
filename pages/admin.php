@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../asset/css/style.css">
     <style>
-        td{
+        td {
             word-wrap: break-word;
         }
     </style>
@@ -20,7 +20,7 @@
     include_once __DIR__ . '/../server/data.php';
     include_once __DIR__ . '/../components/Tables.php';
     $conn->select_db('fitnessapp');
-    session_start(); 
+    session_start();
     renderFixedButton('../server/logout.php', '../asset/image/logout.png');
     echo "<h2 style='text-align: center; font-size:48px;'>Admin Side Consultation Record</h2>";
 
@@ -29,26 +29,26 @@
             FROM Consultation c
             JOIN Nutritionist n ON c.nutritionistID = n.ID
             JOIN Member m ON c.memberID = m.ID';
-    $consultationList = dataGetResultSql($sql, $pdo, [], ['adminConsultationID','date', 'time','nutritionistID', 'nutritionistName', 'nutritionistContact','comment', 'status', 'memberID', 'memberName','email']);
-    
-    $groupedConsultations = [];
-foreach ($consultationList as $consultation) {
-    $nutritionistID = $consultation['nutritionistID'];
-    
-    // Set the nutritionist name only once
-    if (!isset($groupedConsultations[$nutritionistID]['nutritionistName'])) {
-        $groupedConsultations[$nutritionistID]['nutritionistName'] = $consultation['nutritionistName'];
-    }
-    
-    // Add consultations to an array
-    $groupedConsultations[$nutritionistID]['consultations'][] = $consultation;
-}
+    $consultationList = dataGetResultSql($sql, $pdo, [], ['adminConsultationID', 'date', 'time', 'nutritionistID', 'nutritionistName', 'nutritionistContact', 'comment', 'status', 'memberID', 'memberName', 'email']);
 
-if (!empty($groupedConsultations)) {
-    foreach ($groupedConsultations as $nutritionistID => $nutritionistData) {
-        $nutritionistName = $nutritionistData['nutritionistName'];
-        echo "<h3 style='text-align:center; font-size:24px;'>Nutritionist: $nutritionistName (Nutritionist ID: $nutritionistID)</h3>";  
-            
+    $groupedConsultations = [];
+    foreach ($consultationList as $consultation) {
+        $nutritionistID = $consultation['nutritionistID'];
+
+        // Set the nutritionist name only once
+        if (!isset($groupedConsultations[$nutritionistID]['nutritionistName'])) {
+            $groupedConsultations[$nutritionistID]['nutritionistName'] = $consultation['nutritionistName'];
+        }
+
+        // Add consultations to an array
+        $groupedConsultations[$nutritionistID]['consultations'][] = $consultation;
+    }
+
+    if (!empty($groupedConsultations)) {
+        foreach ($groupedConsultations as $nutritionistID => $nutritionistData) {
+            $nutritionistName = $nutritionistData['nutritionistName'];
+            echo "<h3 style='text-align:center; font-size:24px;'>Nutritionist: $nutritionistName (Nutritionist ID: $nutritionistID)</h3>";
+
             // Create header row once
             echo "<div class='container_parent'><table>
                 <tr>
@@ -61,7 +61,7 @@ if (!empty($groupedConsultations)) {
                     <th>Status</th>
                     <th></th>
                 </tr>";
-            
+
             // Add all consultations for this member
             foreach ($nutritionistData['consultations'] as $consultation) {
                 $statusText = (!$consultation['status']) ? 'Pending Approval' : 'Approved';
@@ -74,7 +74,7 @@ if (!empty($groupedConsultations)) {
                     <td>{$consultation['comment']}</td>
                     <td>$statusText</td>
                     <td>";
-                renderSmallButton("../server/deleteRecord.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Remove Record', 'button');
+                renderSmallButton("../server/deleteRecord.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Remove Record', 'button', '#FF8080', 'black');
                 echo "</td>
                 </tr>";
             }

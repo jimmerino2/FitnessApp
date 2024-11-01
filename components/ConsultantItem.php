@@ -29,7 +29,7 @@ function renderNutritionistDropdownBox($image, $name, $study, $contact, $desc, $
         echo
             "
             <a href='../pages/form_consultation.php?consultantContact=" . urlencode($contact) . "'>
-                
+                <button>Request to Meet</button>
             </a>
             ";
     } else {
@@ -93,6 +93,10 @@ function renderNutritionistPreview($image, $name, $study)
         display: none;
         margin-top: 10px;
         z-index: 2;
+    }
+
+    .preview {
+        background-color: #7AB2D3;
     }
 
     button {

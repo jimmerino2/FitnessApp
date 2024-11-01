@@ -40,13 +40,13 @@ function renderFixedButton($link, $imageLink)
 ?>
 <style>
     .small-button {
-        padding: 8px 20px;
+        padding: 8px 24px;
         font-weight: bold;
         margin: 5px;
         cursor: pointer;
         border: none;
         border-radius: 15%;
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .big-button {

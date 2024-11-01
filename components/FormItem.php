@@ -1,10 +1,10 @@
 <?php
-function renderFormItemText($title = "Title", $name = "Name", $placeholder = "Placeholder")
+function renderFormItemText($title = "Title", $name = "Name", $placeholder = "Placeholder", $value)
 {
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <input type='text' name='$name' placeholder='$placeholder' class='form-input' required>
+        <input type='text' name='$name' placeholder='$placeholder' class='form-input' value='$value' required>
     </div>
     ";
 }
@@ -30,7 +30,7 @@ function renderFormItemRadio($title = "Title", $name, $values)
     echo "</div>";
 }
 
-function renderFormItemSelect($title, $name, $values)
+function renderFormItemSelect($title, $name, $values,$currentValue)
 {
     echo "
     <div class='form-item'>
@@ -38,8 +38,9 @@ function renderFormItemSelect($title, $name, $values)
             <select name='$name'>
     ";
     foreach ($values as $value => $label) {
+        $selected = ($value == $currentValue) ? 'selected' : '';
         echo "
-        <option value='$value'>$label</option>
+         <option value='$value' $selected>$label</option>
         ";
     }
     echo "</select></div>";

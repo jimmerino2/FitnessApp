@@ -46,7 +46,7 @@
     session_start();
     renderFixedButton('../server/logout.php', '../asset/image/logout.png');
     echo "
-    <a class='fixedButton2' href=''>
+    <a class='fixedButton2' href='../pages/form_admin_add.php'>
         <div class='roundedFixedBtn2'><img src='../asset/image/record.png' style='width:80%;'></div>
      </a>";
     echo "<h2 style='text-align: center; font-size:48px;'>Admin Side Consultation Record</h2>";

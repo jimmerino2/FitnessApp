@@ -32,9 +32,10 @@
                 $_SESSION['consultation_id'] = $consultationId;
                 $currentDate = date('Y-m-d');
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemCalendar('Set Date', 'consultationDate',$currentDate, '');
-                renderFormItemTime('Set Time', 'consultationTime','','');
-                renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?');
+                renderFormItemCalendar('Set Date', 'consultationDate',$currentDate, '', $consultation['date']);
+                renderFormItemTime('Set Time', 'consultationTime','','', $consultation['time']);
+                renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?', $consultation['comment']);
+                renderFormItemSelect('Approve', 'status', ['0' => 'appending', '1' => 'approve']);
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('admin.php', '', 'Back', 'button', '#FF8080', 'black');
@@ -54,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST['consultationDate'];
     $time = $_POST['consultationTime'];
     $comment = $_POST['comment'];
-    $status = false;
+    $status = $_POST['status'];
     $consultantID = $_SESSION['consultation_id'];
 
 

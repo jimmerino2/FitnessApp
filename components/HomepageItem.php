@@ -19,15 +19,9 @@ function renderAdvertise()
     ";
 }
 
-function renderClassBoxFlex()
-{
-    echo "<div class='classbox-flex'>";
-    renderClassBox('Class1', 'RM50');
-    renderClassBox('Class2', 'RM100');
-    echo "</div>";
-}
 
-function renderSlideShow(){
+function renderSlideShow()
+{
     renderNutBox('../asset/image/nutritionist1.png', 'Name', 'Hi im a nutritionist1');
     renderNutBox('../asset/image/nutritionist2.png', 'Name', 'Hi im a nutritionist2');
     renderNutBox('../asset/image/nutritionist3.png', 'Name', 'Hi im a nutritionist3');
@@ -73,5 +67,6 @@ function renderSlideShow(){
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #4A628A;
     }
 </style>

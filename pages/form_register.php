@@ -7,6 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="stylesheet" href="../asset/css/forms.css">
+    <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../asset/css/forms.css">
 </head>
 
 <body>
@@ -15,9 +17,7 @@
             <div style='justify-items:center;'>
                 <h2 style="margin-bottom: 25px;">Register Form</h2>
 
-                <div style="width: 70%;"><a href="form_login.php">Have an
-                        account? Log in
-                        instead.</a></div>
+                <div style="width: 70%;"><a href="form_login.php">Have an account? Log in instead.</a></div>
 
                 <?php
                 include_once __DIR__ . '/../components/FormItem.php';
@@ -36,7 +36,6 @@
             </div>
         </form>
     </div>
-
 </body>
 
 </html>

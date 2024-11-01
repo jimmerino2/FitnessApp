@@ -44,7 +44,7 @@
 
         <!-- Nutritionists Section -->
         <?php
-        renderTitle('Meet our Nutritionists', 'Request to meet our nutritionists for a consultation and learn more about your health and wellbeing!', '../asset/image/consultation_header.png');
+        renderTitle('Meet our Nutritionists', 'Request to meet our nutritionists for a consultation and learn more about your health and wellbeing!', '../asset/image/consultation_header.png', '');
         // Selecting all nutritionists
         $sql = 'SELECT * FROM Nutritionist';
         $nutritionists = dataGetResultSql($sql, $pdo, [], ['nutritionistName', 'nutritionistDesc', 'nutritionistContact', 'studyRecord', 'nutritonistDesc']);

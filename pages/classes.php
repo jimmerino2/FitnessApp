@@ -6,68 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .title{
-            background:linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3)), url("../asset/image/classTitleImg.jpg");
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            position: sticky;
-            top:165.5px;
+        .classes_content {
+            display: flex;
+            width: 100;
         }
-        .paragraph{
-            text-align: center;
-            background-color: #fcfaef;
-            }
-            .paragraph h1{
-            margin-top: 20px;
-            font-size: 60px;
-            }
-            .paragraph p{
-            font-size: 24px;
-            }
-        .enrollmentRecord{
-            text-align: center;
-            background-color: #fcfaef;
-            font-size: 24px;
+
+        .classes_nav {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            background-color: #4A628A;
+            width: 20%;
+        }
+
+        .classes_nav_content {
+            width: 100%;
+            position: sticky;
+            top: 169px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .classes_details {
+            height: fit-content;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
 </head>
 
-<body style="margin:0px;">
-<body style="margin:0px;">
+<body>
     <?php
     session_start();
     include_once __DIR__ . '/../server/connectDB.php';
+    include_once __DIR__ . '/../server/data.php';
     $conn->select_db('fitnessapp');
     include_once __DIR__ . '/../layout/header.php';
     include_once __DIR__ . '/../layout/footer.php';
     include_once __DIR__ . '/../components/HomepageItem.php';
-    include_once __DIR__ . '/../layout/header.php';
-    include_once __DIR__ . '/../layout/footer.php';
-    include_once __DIR__ . '/../components/HomepageItem.php';
+    include_once __DIR__ . '/../layout/title.php';
     renderHeader($conn);
     if (isset($_SESSION['userinput'])) { // Logged in 
         renderFixedButton('../pages/record_enrollment.php', '../asset/image/record.png');
     } else { // Not Logged in
-       
+    
     }
     ?>
-    <div class = "title">
-         <h1 style="font-size: 30px; text-align: center; color: darkblue;">Our Classes</h1>
+
+    <?php renderTitle('Sign Up for Classes', 'Enter a class to further improve your health and promote a healthier lifestyle!', '../asset/image/classTitleImg.jpg', '') ?>
+
+    <div class="classes_content">
+        <div class='classes_nav'>
+            <div class="classes_nav_content">
+                <?php
+                $sql = 'SELECT * FROM Classes';
+                $classes = dataGetResultSql($sql, $pdo, [], ['className', 'classDesc', 'price']);
+                foreach ($classes as $class) {
+                    renderClassBox($class['className'], '', 'RM' . $class['price'], '#7AB2D3', 'B9E5E8', 'black', $class['className']);
+                }
+                ?>
+            </div>
+        </div>
+        <div class="classes_details">
             <?php
-            renderClassBoxFlex();
+            foreach ($classes as $class) {
+                renderClassDetails('../asset/image/' . $class['className'] . '.jpg', $class['className'], $class['classDesc'], 'RM' . $class['price']);
+            }
             ?>
+        </div>
     </div>
-    <div class="paragraph">
-         <h1>Class 1</h1>
-         <p>xxxxxxxxxxxxxxxxxxxxxxx</p>
-         <p>xxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-            
-    </div>
-    <div class="paragraph">
-        <h1>Class 2</h1>
-        <p>xxxxxxxxxxxxxxxxxxxxxxx</p>
-        <p>xxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-    </div>
+
+    <?php renderFooter() ?>
 </body>
 
 </html>

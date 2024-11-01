@@ -7,6 +7,7 @@ session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="stylesheet" href="../asset/css/forms.css">
     <title>Health Record</title>
 
@@ -39,7 +40,6 @@ session_start(); ?>
                 <?php
                 include_once __DIR__ . '/../server/connectDB.php';
                 include_once __DIR__ . '/../components/ConsultantItem.php';
-                include_once __DIR__ . '/../layout/header.php';
                 $conn->select_db('fitnessapp');
 
                 include_once __DIR__ . '/../components/FormItem.php';

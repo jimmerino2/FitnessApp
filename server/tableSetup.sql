@@ -89,8 +89,10 @@ INSERT IGNORE INTO Nutritionist (nutritionistName, nutritonistDesc, nutritionist
 -- #endregion
 
 INSERT IGNORE INTO Classes (className, classDesc, price, classType) VALUES
-    ('Test1', 'Experienced dietitian specializing in sports nutrition.', '50.00', 'I'),
-    ('Test2', 'Clinical nutritionist with a focus on chronic illness management.', '100.00', 'M');
+    ('Yoga Basics', 'Beginner-friendly yoga sessions for flexibility and relaxation.', '50.00', 'M'),
+    ('Advanced Pilates', 'Intensive Pilates sessions to enhance core strength and stability.', '80.00', 'I'),
+    ('Strength Training', 'Full-body strength workouts designed for all fitness levels.', '75.00', 'M'),
+    ('Cardio Blast', 'High-intensity cardio classes aimed at boosting endurance.', '100.00', 'M');
 
 
 INSERT IGNORE INTO Member (memberName, memberContact, memberPassword, gender, email, DOB) VALUES

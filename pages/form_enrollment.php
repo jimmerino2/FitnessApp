@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="stylesheet" href="../asset/css/forms.css">
     <title>Document</title>
 </head>
@@ -17,15 +18,22 @@
                 <?php
                 session_start();
                 include_once __DIR__ . '/../server/connectDB.php';
+                include_once __DIR__ . '/../server/data.php';
                 include_once __DIR__ . '/../components/ConsultantItem.php';
-                include_once __DIR__ . '/../layout/header.php';
-                
+                session_start();
                 $conn->select_db('fitnessapp');
 
                 $currentDate = date('Y-m-d');
+                $sql = 'SELECT * FROM Classes';
+                $classes = dataGetResultSql($sql, $pdo, [], ['className', 'price', 'id']);
+                $values = [];
+                foreach ($classes as $class) {
+                    $values[$class['id']] = $class['className'] . ' (RM' . $class['price'] . ')'; // Corrected format
+                }
+
 
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemRadio("Classes", "classID", ['1' => "Test1 (RM50)", '2' => "Test2 (RM100)"]);
+                renderFormItemRadio("Classes", "classID", $values);
                 echo "
             <div class='form-item'>
                 <h3 class='form-title'>Set Start Date</h3>

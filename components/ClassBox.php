@@ -2,19 +2,32 @@
 include_once __DIR__ . '/Buttons.php';
 include_once __DIR__ . '/../server/data.php';
 
-function renderClassBox($text1, $text2)
+function renderClassBox($text1, $text2, $text3, $bgColor, $buttonBg, $buttonTxt, $className)
 {
     echo "
-    <div class=\"class-box\">
-        <h1 class=\"class-box-title\">$text1</h1>
-        <p class=\"class-box-description\">$text2</p>";
-    
-    if (isset($_SESSION['userinput'])) { // Logged in 
-        renderMediumButton('../pages/form_enrollment.php', '', 'Class', '');
-    } else { // Not Logged in
-        renderMediumButton('../pages/form_login.php', '', 'Class', '');
-    }
+    <div class=\"class-box\" style='background-color: $bgColor'>
+        <h2 class=\"class-box-title\">$text1</h2>
+        <p class=\"class-box-description\">$text2</p>
+        <p class=\"class-box-description\">$text3</p>";
+
+    renderSmallButton('#' . $className, '', 'View Details', 'button', $buttonBg, $buttonTxt);
     echo "</div>";
+}
+
+function renderClassDetails($img, $title, $desc, $price)
+{
+    echo "
+    <div id='$title' class='details_container'>
+        <img src='$img'>
+        <div class='details_desc'>
+            <h1>$title</h1>
+            <h2>$desc</h2>
+            <h2>$price</h2>";
+    renderSmallButton('../pages/form_enrollment.php', '', 'Enroll Now', 'button', '#7AB2D3', 'black');
+    echo "
+        </div>
+    </div>
+";
 }
 
 function renderNutBox($image, $name, $description)
@@ -58,28 +71,56 @@ function renderNutBox($image, $name, $description)
 
 <style>
     /* CSS for renderClassBox */
+    .details_container {
+        display: flex;
+        background-color: #4A628A;
+        margin: 30px;
+        padding: 25px;
+        width: 80%;
+    }
+
+    .div_absolute {
+        display: flex;
+        justify-content: right;
+    }
+
+    .details_container img {
+        width: 300px;
+        height: 300px;
+        border-radius: 2.5%;
+    }
+
+    .details_desc {
+        margin-left: 30px;
+        background-color: #DFF2EB;
+        border-radius: 2.5%;
+        width: 70%;
+        padding: 30px;
+    }
+
     .class-box {
         flex: 1;
-        border: 2px solid black;
-        background-color: lightgreen;
-        max-width: 20%;
+        border: none;
+        border-radius: 2.5%;
         margin: 20px;
         text-align: center;
+        padding: 15px;
     }
 
     .class-box-title {
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .class-box-description {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     /* CSS for renderNutBox */
     .nut-box {
         padding: 10px;
         border: 1px solid black;
-        display: none; /* Hide all initially */
+        display: none;
+        /* Hide all initially */
         justify-content: center;
         margin: 10px 300px;
         animation: fade 1s ease-in-out forwards;
@@ -112,12 +153,17 @@ function renderNutBox($image, $name, $description)
     }
 
     .fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
     }
 
     @keyframes fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 </style>

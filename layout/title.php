@@ -1,5 +1,5 @@
 <?php
-function renderTitle($title, $desc, $image)
+function renderTitle($title, $desc, $image, $content)
 {
     echo "
 <div class='title' style='background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7)), url($image);background-position: bottom;
@@ -8,6 +8,7 @@ function renderTitle($title, $desc, $image)
         <h1>$title</h1>
         <h3>$desc</h3>
     </div>
+    $content
 </div>
 ";
 }
@@ -29,8 +30,7 @@ function renderTitle($title, $desc, $image)
     .title {
         width: 100%;
         background-size: cover;
-        margin-bottom: 60px;
-        height: 350px;
+        min-height: 350px;
         overflow: hidden;
         display: flex;
         flex-direction: column;

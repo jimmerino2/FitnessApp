@@ -22,6 +22,7 @@
     $conn->select_db('fitnessapp');
     session_start();
     renderFixedButton('../server/logout.php', '../asset/image/logout.png');
+    renderFixedButton('../server/logout.php', '../asset/image/rocord.png');
     echo "<h2 style='text-align: center; font-size:48px;'>Admin Side Consultation Record</h2>";
 
     // Show all records that correspond to the user
@@ -60,6 +61,7 @@
                     <th>Comment Written</th>
                     <th>Status</th>
                     <th></th>
+                    <th></th>
                 </tr>";
 
             // Add all consultations for this member
@@ -75,6 +77,9 @@
                     <td>$statusText</td>
                     <td>";
                 renderSmallButton("../server/deleteRecord.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Remove Record', 'button', '#FF8080', 'black');
+                echo "</td>
+                <td>";
+                renderSmallButton("../server/form_admin_update.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Update Record', 'button', '#FF8080', 'black');
                 echo "</td>
                 </tr>";
             }

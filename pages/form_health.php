@@ -39,7 +39,6 @@ session_start(); ?>
 
                 <?php
                 include_once __DIR__ . '/../server/connectDB.php';
-                include_once __DIR__ . '/../components/ConsultantItem.php';
                 $conn->select_db('fitnessapp');
 
                 include_once __DIR__ . '/../components/FormItem.php';

@@ -23,15 +23,15 @@ session_start(); ?>
                 $conn->select_db('fitnessapp');
 
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemTime('Set Time', 'time', '','',$health['time']);
-                renderFormItemCalendar('Set Date', 'date','','',$health['date']);
+                renderFormItemTime('Set Time', 'time', '', '', '');
+                renderFormItemCalendar('Set Date', 'date', '', '', '');
 
-                renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60', $health['weight']);
-                renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000',$health['water']);
+                renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60', '');
+                renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000', '');
 
-                renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga', '3' => 'Weight Lifting', '4' => 'Pilates'], $health['exerciseID']);
-                renderFormItemTime('Start Time', 'startTime','','',$health['startTime']);
-                renderFormItemTime('End Time', 'endTime','','',$health['endTime']);
+                renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga', '3' => 'Weight Lifting', '4' => 'Pilates'], '');
+                renderFormItemTime('Start Time', 'startTime', '', '', '');
+                renderFormItemTime('End Time', 'endTime', '', '', '');
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');

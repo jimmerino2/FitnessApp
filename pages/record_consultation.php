@@ -21,28 +21,32 @@
     $sql = 'SELECT id FROM Member WHERE email = ?';
     dataMapSql($sql, $conn, [$_SESSION['userinput']], $memberID);
 
-        // Get all consultations with nutritionist information in one query
-        $sql = 'SELECT c.*, n.nutritionistName, n.nutritionistContact 
+    // Get all consultations with nutritionist information in one query
+    $sql = 'SELECT c.*, n.nutritionistName, n.nutritionistContact 
                 FROM Consultation c
                 JOIN Nutritionist n ON c.nutritionistID = n.id
                 WHERE c.memberID = ?';
-        $consultationList = dataGetResultSql($sql, $pdo, [$memberID], 
-            ['id', 'nutritionistID', 'date', 'time', 'comment', 'status', 'nutritionistName', 'nutritionistContact']);
+    $consultationList = dataGetResultSql(
+        $sql,
+        $pdo,
+        [$memberID],
+        ['id', 'nutritionistID', 'date', 'time', 'comment', 'status', 'nutritionistName', 'nutritionistContact']
+    );
 
-        // Render the results
-        foreach ($consultationList as $consultation) {
-            renderTable(
-                $consultation['id'], 
-                $consultation['date'] . '&nbsp&nbsp&nbsp' . $consultation['time'], 
-                [
-                    'Consultant Name' => $consultation['nutritionistName'],
-                    'Consultant Contact' => $consultation['nutritionistContact'],
-                    'Comment Written' => $consultation['comment'],
-                    'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'
-                ],
-                '../server/deleteRecord.php?consultationID'
-            );
-        }
+    // Render the results
+    foreach ($consultationList as $consultation) {
+        renderTable(
+            $consultation['id'],
+            $consultation['date'] . '&nbsp&nbsp&nbsp' . $consultation['time'],
+            [
+                'Consultant Name' => $consultation['nutritionistName'],
+                'Consultant Contact' => $consultation['nutritionistContact'],
+                'Comment Written' => $consultation['comment'],
+                'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'
+            ],
+            '../server/deleteRecord.php?consultationID'
+        );
+    }
 
 
     ?>

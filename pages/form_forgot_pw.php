@@ -18,7 +18,7 @@
                 <?php
                 include_once __DIR__ . '/../components/FormItem.php';
                 include_once __DIR__ . '/../components/Buttons.php';
-                renderFormItemText('Email Address', 'email', 'Enter email');
+                renderFormItemText('Email Address', 'email', 'Enter email', '');
                 echo '<br>(Better verification system soon)<br>';
                 renderFormItemPassword('New Password', 'pass', 'Enter password');
                 renderFormItemPassword('Confirm Password', 'pass_conf', 'Confirm password');

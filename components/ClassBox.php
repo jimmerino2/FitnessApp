@@ -36,13 +36,13 @@ function renderNutBox($image, $name, $description)
     <div class=\"nut-box\">
         <img src=\"$image\" class=\"nut-box-image\">
         <div class=\"nutriDesc\">
-            <h2 class=\"nut-box-name\">$name</h2>
-            <p class=\"nut-box-description\">$description</p>
-        </div>
-        <div class=\"button-container\">
-            <!-- Add any buttons if needed -->
+            <h2 style='font-size: 35px' class=\"nut-box-name\">$name</h2>
+            <h4 style='font-size: 20px' class=\"nut-box-description\">$description</h4>";
+    renderBigButton('../pages/consultation.php', '', 'Make an appointment', 'button', '#B9E5E8');
+    echo "
         </div>
     </div>";
+
     echo "
     <script> //Script for renderNutBox
     let slideIndex = 0;
@@ -117,25 +117,28 @@ function renderNutBox($image, $name, $description)
 
     /* CSS for renderNutBox */
     .nut-box {
-        padding: 10px;
-        border: 1px solid black;
+        padding: 20px;
         display: none;
         /* Hide all initially */
         justify-content: center;
+        background-color: #7AB2D3;
         margin: 10px 300px;
         animation: fade 1s ease-in-out forwards;
+        border-radius: 2.5%;
     }
 
     .nut-box-image {
-        border: 1px solid black;
         width: 25%;
-        aspect-ratio: 1 / 1;
+        border-radius: 2.5%;
     }
 
     .nutriDesc {
         flex: 1;
-        border: 1px solid black;
-        margin: 10px;
+        background-color: #DFF2EB;
+        margin-left: 20px;
+        border-radius: 2.5%;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .nut-box-name {

@@ -9,21 +9,11 @@ function renderSmallButton($link, $function, $text, $inputType, $bgColor, $txtCo
     </a>";
 }
 
-function renderBigButton($link, $function, $text, $inputType)
+function renderBigButton($link, $function, $text, $inputType, $bgColor)
 {
     echo "
     <a href=\"$link\" style=\"text-decoration: none;\">
-        <button type=\"$inputType\" onclick=\"$function\" class=\"big-button\">
-            $text
-        </button>
-    </a>";
-}
-
-function renderMediumButton($link, $function, $text, $inputType)
-{
-    echo "
-    <a href=\"$link\" style=\"text-decoration: none;\">
-        <button type=\"$inputType\" onclick=\"$function\" class=\"medium-button\">
+        <button type=\"$inputType\" onclick=\"$function\" class=\"big-button\" style='background-color:$bgColor; color: black;'>
             $text
         </button>
     </a>";
@@ -51,14 +41,11 @@ function renderFixedButton($link, $imageLink)
 
     .big-button {
         cursor: pointer;
-        background-color: grey;
         font-size: 28px;
         border: solid 0px black;
         border-radius: 20px;
-        color: rgb(0, 0, 0);
         padding: 20px 50px;
         margin: 20px;
-        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .medium-button {

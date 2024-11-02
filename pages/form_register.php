@@ -23,13 +23,13 @@
                 include_once __DIR__ . '/../components/FormItem.php';
                 include_once __DIR__ . '/../components/Buttons.php';
                 $currentDate = date('Y-m-d');
-                renderFormItemText("Name", "name", "Enter Your Name");
-                renderFormItemText("Contact Number", "contact", "0123456789");
+                renderFormItemText("Name", "name", "Enter Your Name", '');
+                renderFormItemText("Contact Number", "contact", "0123456789", '');
                 renderFormItemEmail("Email", "email", "xxx@gmail.com");
                 renderFormItemPassword("Set Password (10+ Characters)", "pass", "Enter Password");
                 renderFormItemPassword("Confirm Password", "pass_conf", "Confirm Password");
                 renderFormItemRadio("Gender", "gender", ['m' => "Male", 'f' => "Female"]);
-                renderFormitemCalendar("Date of Birth", 'birthday','',$currentDate,'');
+                renderFormitemCalendar("Date of Birth", 'birthday', '', $currentDate, '');
 
                 renderSmallButton('home_page.php', '', 'Back', 'button', '#FF8080', 'black');
                 renderSmallButton('', '', 'Register', 'submit', '#1FAB89', 'black');

@@ -33,11 +33,11 @@
                 }
 
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemText(title: 'Member Name', name: 'memberName', placeholder: '');
-                renderFormItemText(title: 'Member Email', name: 'email', placeholder:'');
-                renderFormItemSelect(title: 'Nutritionist Name', name: 'nutritionistID',values: $nutritionistOptions);
-                renderFormItemCalendar('Set Date', 'consultationDate',$currentDate, '', value : '');
-                renderFormItemTime('Set Time', 'consultationTime','','', value: '');
+                renderFormItemText('Member Name', 'memberName', '', '');
+                renderFormItemText('Member Email', 'email', '', '');
+                renderFormItemSelect('Nutritionist Name', 'nutritionistID', $nutritionistOptions, '');
+                renderFormItemCalendar('Set Date', 'consultationDate', $currentDate, '', value: '');
+                renderFormItemTime('Set Time', 'consultationTime', '', '', value: '');
                 renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?', value: '');
 
                 include_once __DIR__ . '/../components/Buttons.php';
@@ -48,6 +48,7 @@
         </form>
     </div>
 </body>
+
 </html>
 
 <?php

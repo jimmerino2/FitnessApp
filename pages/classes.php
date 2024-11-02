@@ -46,8 +46,8 @@
     include_once __DIR__ . '/../server/data.php';
     $conn->select_db('fitnessapp');
     include_once __DIR__ . '/../layout/header.php';
+    include_once __DIR__ . '/../components/ClassBox.php';
     include_once __DIR__ . '/../layout/footer.php';
-    include_once __DIR__ . '/../components/HomepageItem.php';
     include_once __DIR__ . '/../layout/title.php';
     renderHeader($conn);
     if (isset($_SESSION['userinput'])) { // Logged in 

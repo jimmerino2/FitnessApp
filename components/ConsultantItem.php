@@ -6,8 +6,8 @@ function renderNutritionistDropdownBox($image, $name, $study, $contact, $desc, $
         <img src='" . htmlspecialchars($image) . "' style='width: 160px; height:160px;'>
         <div class='container_child'>
             <h2>$name</h1>
-            <h3>$desc</h4>
-            <h3>RM20</h4>
+            <h3 style;'>$desc</h4>
+            <h3 style;>RM20</h4>
             <div style='position: absolute; bottom: 0; right: 0;'>
                 <button id='$buttonId' onclick='toggleForm(\"$buttonId\", \"$popupID\")'>Show details</button>
             </div>

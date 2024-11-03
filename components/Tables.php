@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/Buttons.php';
-function renderTable($id, $title, $content, $deleteLink, $updateLink=null)
+function renderTable($id, $title, $content, $deleteLink, $updateLink = null)
 {
     echo "
     <div class='container_parent'>
@@ -23,10 +23,10 @@ function renderTable($id, $title, $content, $deleteLink, $updateLink=null)
         </table>
         <div style='display:flex; justify-content:end; padding: 10px;'>";
 
-    renderSmallButton("$deleteLink=$id", '', 'Remove Record', 'button', '#FF8080', 'black');
+    renderSmallButton("$deleteLink=$id", '', 'Remove', 'button', '#FF8080', 'black');
 
     if ($updateLink !== null) {
-        renderSmallButton("$updateLink=$id", '', 'Update Record', 'button', '#FF8080', 'black');
+        renderSmallButton("$updateLink=$id", '', 'Update', 'button', '#7AB2D3', 'black');
         // Add some margin between buttons
         echo "<span style='margin-right: 10px;'></span>";
     }
@@ -40,7 +40,7 @@ function renderTable($id, $title, $content, $deleteLink, $updateLink=null)
         display: flex;
         flex-direction: column;
         position: relative;
-        padding: 10px;
+        padding: 20px;
         max-width: 1400px;
         margin-inline: auto;
         /* Stack content vertically */
@@ -57,11 +57,15 @@ function renderTable($id, $title, $content, $deleteLink, $updateLink=null)
 
     td,
     th {
-        padding: 7.5px;
+        padding: 10px;
         text-align: left;
     }
 
     table {
         table-layout: fixed;
+    }
+
+    th {
+        background-color: #B9E5E8;
     }
 </style>

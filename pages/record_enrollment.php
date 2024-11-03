@@ -27,8 +27,12 @@
             renderTable($enrollment['enrollmentID'], '', ['Class Name' => $enrollment['className'], 'Start Date' => $enrollment['startDate'], 'End Date' => $enrollment['endDate']], '../server/deleteRecord.php?enrollmentID');
         }
     } else {
-        echo 'no results lol';
+        echo '<div style="height:400px; display: flex; align-items:center; justify-content:center; flex-direction: column;">';
+        echo '<h1>No results found</h1>';
+        renderBigButton('../pages/classes.php', '', 'Back to Classes', 'button', '#7AB2D3');
+        echo '</div>';
     }
+
 
     ?>
 

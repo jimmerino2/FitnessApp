@@ -29,9 +29,9 @@ session_start(); ?>
                 renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60', '');
                 renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000', '');
 
-                renderFormItemSelect('Set Exercise', 'exerciseID', ['2' => 'Cardio', '1' => 'Yoga', '3' => 'Weight Lifting', '4' => 'Pilates'], '');
-                renderFormItemTime('Start Time', 'startTime', '', '', '');
-                renderFormItemTime('End Time', 'endTime', '', '', '');
+                renderFormItemSelect('Set Exercise', 'exerciseID', ['3' => 'Cardio', '2' => 'Yoga', '4' => 'Weight Lifting', '5' => 'Pilates', '1' => 'None'], '1');
+                renderFormItemTime('Start Time', 'startTime', '', '', '', false);
+                renderFormItemTime('End Time', 'endTime', '', '', '', false);
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');

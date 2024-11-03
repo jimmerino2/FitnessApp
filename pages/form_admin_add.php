@@ -16,6 +16,7 @@
 
                 <?php
                 include_once __DIR__ . '/../server/connectDB.php';
+                include_once __DIR__ . '/../server/data.php';
                 include_once __DIR__ . '/../components/ConsultantItem.php';
                 $conn->select_db('fitnessapp');
                 session_start();
@@ -33,11 +34,10 @@
                 }
 
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemText('Member Name', 'memberName', '', '');
                 renderFormItemText('Member Email', 'email', '', '');
                 renderFormItemSelect('Nutritionist Name', 'nutritionistID', $nutritionistOptions, '');
                 renderFormItemCalendar('Set Date', 'consultationDate', $currentDate, '', value: '');
-                renderFormItemTime('Set Time', 'consultationTime', '', '', value: '');
+                renderFormItemTime('Set Time', 'consultationTime', '', '', '', true);
                 renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?', value: '');
 
                 include_once __DIR__ . '/../components/Buttons.php';
@@ -56,7 +56,6 @@
 include_once __DIR__ . '/../server/data.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $memberName = $_POST['memberName'];
     $memberEmail = $_POST['email'];
     $nutritionistID = $_POST['nutritionistID'];
     $date = $_POST['consultationDate'];
@@ -64,30 +63,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $comment = $_POST['comment'];
     $status = false;
 
-    // Fetch or create member ID based on the entered member email
-    $sql_member = 'SELECT id FROM member WHERE email = ?';
-    $stmt_member = $conn->prepare($sql_member);
-    $stmt_member->bind_param('s', $memberEmail);
-    $stmt_member->execute();
-    $result_member = $stmt_member->get_result();
+    // Check whether ID exists
+    $sql = 'SELECT * FROM Member WHERE email = ?';
+    $memberIDs = dataGetResultSql($sql, $pdo, [$memberEmail], ['id']);
 
-    if ($result_member->num_rows > 0) {
-        // If member exists, fetch the ID
-        $memberID = $result_member->fetch_assoc()['id'];
+    if (count($memberIDs) !== 0) {
+        $memberID = $memberIDs[0]['id'];
+        $sql = 'INSERT INTO Consultation (memberID, nutritionistID, date, time, comment, status) VALUES (?, ?, ?, ?, ?, ?)';
+        $stmt_consultation = $conn->prepare($sql);
+        $stmt_consultation->bind_param('iissss', $memberID, $nutritionistID, $date, $time, $comment, $status);
+        $stmt_consultation->execute();
+
+        echo '<meta http-equiv="refresh" content="0;url=admin.php">';
+        exit();
     } else {
-        // If member does not exist, insert new member and get the ID
-        $sql_insert_member = 'INSERT INTO member (memberName, email) VALUES (?, ?)';
-        $stmt_insert_member = $conn->prepare($sql_insert_member);
-        $stmt_insert_member->bind_param('ss', $memberName, $memberEmail);
-        $stmt_insert_member->execute();
-        $memberID = $stmt_insert_member->insert_id;
+        echo '<script>alert("No such member exists.")</script>';
     }
-
-    $sql = 'INSERT INTO Consultation (memberID, nutritionistID, date, time, comment, status) VALUES (?, ?, ?, ?, ?, ?)';
-    $stmt_consultation = $conn->prepare($sql);
-    $stmt_consultation->bind_param('iissss', $memberID, $nutritionistID, $date, $time, $comment, $status);
-    $stmt_consultation->execute();
-
-    echo '<meta http-equiv="refresh" content="0;url=admin.php">';
-    exit();
 }

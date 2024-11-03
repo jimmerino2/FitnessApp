@@ -99,6 +99,7 @@ INSERT IGNORE INTO Member (memberName, memberContact, memberPassword, gender, em
     ('Admin', '0182677327', '$2y$10$pOxEQA/GHhosK5qVRWyVdexsLMLsK/f9NwaaVpQ8HfjiOb09DLIJC', 'f', 'admin@gmail.com', '2005-10-21');
 
 INSERT IGNORE INTO Exercise (calPerMin, exerciseType) VALUES
+    ('0', 'None'),
     ('6.6', 'Yoga'),
     ('10', 'Cardio'),
     ('4', 'Strength Training'),

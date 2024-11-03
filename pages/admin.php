@@ -7,31 +7,44 @@
     <title>Document</title>
     <link rel="stylesheet" href="../asset/css/style.css">
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         td {
             word-wrap: break-word;
         }
 
         .fixedButton2 {
-        position: fixed;
-        bottom: 0px;
-        right: 100px;
-        padding: 20px;
-        width: fit-content;
-    }
+            position: fixed;
+            bottom: 0px;
+            right: 100px;
+            padding: 20px;
+            width: fit-content;
+        }
 
-    .roundedFixedBtn2 {
-        display: flex;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-        padding: 5px;
-        background-color: #C62E2E;
-        color: white;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-    
+        .admin_parent_container {
+            width: 95%;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .roundedFixedBtn2 {
+            display: flex;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            padding: 5px;
+            background-color: #C62E2E;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -44,10 +57,10 @@
     include_once __DIR__ . '/../components/SearchBar.php';
     $conn->select_db('fitnessapp');
     session_start();
-    renderFixedButton('../server/logout.php', '../asset/image/logout.png');
+    renderFixedButton('../pages/form_admin_add.php', '../asset/image/plus.png');
     echo "
-    <a class='fixedButton2' href='../pages/form_admin_add.php'>
-        <div class='roundedFixedBtn2'><img src='../asset/image/record.png' style='width:80%;'></div>
+    <a class='fixedButton2' href='../server/logout.php'>
+        <div class='roundedFixedBtn2'><img src='../asset/image/logout.png' style='width:80%;'></div>
      </a>";
     echo "<h2 style='text-align: center; font-size:48px;'>Admin Side Consultation Record</h2>";
     renderSearchBar('Search By Nutrition Name');
@@ -80,7 +93,7 @@
             echo "<h3 style='text-align:center; font-size:24px;'>Nutritionist: $nutritionistName (Nutritionist ID: $nutritionistID)</h3>";
 
             // Create header row once
-            echo "<div class='container_parent'><table>
+            echo "<div class='admin_parent_container'><table>
                 <tr>
                     <th>Member Name</th>
                     <th>Member Email</th>
@@ -89,8 +102,7 @@
                     <th>Consultation Time</th>
                     <th>Comment Written</th>
                     <th>Status</th>
-                    <th>X</th>
-                    <th>+</th>
+                    <th>Settings</th>
                 </tr>";
 
             // Add all consultations for this member
@@ -103,19 +115,16 @@
                     <td>{$consultation['date']}</td>
                     <td>{$consultation['time']}</td>
                     <td>{$consultation['comment']}</td>
-                    <td>$statusText</td>
-                    <td>";
-                renderSmallButton("../server/deleteRecord.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Remove Record', 'button', '#FF8080', 'black');
-                echo "</td>
-                <td>";
-                renderSmallButton("../pages/form_admin_update.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Update Record', 'button', '#FF8080', 'black');
-                echo "</td>
-                </tr>";
+                    <td>$statusText</td><td style='display: flex; width: 220px; border: none; padding: 0px; justify-content: space-between;'>";
+                renderSmallButton("../pages/form_admin_update.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Update', 'button', '#7AB2D3', 'black');
+                renderSmallButton("../server/deleteRecord.php?adminConsultationID={$consultation['adminConsultationID']}", '', 'Remove', 'button', '#FF8080', 'black');
             }
-            echo "</table></div>";
+            echo "</td></table></div>";
         }
     } else {
-        echo 'no records lol';
+        echo '<div style="height:400px; display: flex; align-items:center; justify-content:center; flex-direction: column;">';
+        echo '<h1>No results found</h1>';
+        echo '</div>';
     }
 
     ?>

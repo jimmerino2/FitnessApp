@@ -33,22 +33,26 @@
         ['id', 'nutritionistID', 'date', 'time', 'comment', 'status', 'nutritionistName', 'nutritionistContact']
     );
 
-    // Render the results
-    foreach ($consultationList as $consultation) {
-        renderTable(
-            $consultation['id'],
-            $consultation['date'] . '&nbsp&nbsp&nbsp' . $consultation['time'],
-            [
-                'Consultant Name' => $consultation['nutritionistName'],
-                'Consultant Contact' => $consultation['nutritionistContact'],
-                'Comment Written' => $consultation['comment'],
-                'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'
-            ],
-            '../server/deleteRecord.php?consultationID'
-        );
+    if (count($consultationList) !== 0) {
+        foreach ($consultationList as $consultation) {
+            renderTable(
+                $consultation['id'],
+                $consultation['date'] . '&nbsp&nbsp&nbsp' . $consultation['time'],
+                [
+                    'Consultant Name' => $consultation['nutritionistName'],
+                    'Consultant Contact' => $consultation['nutritionistContact'],
+                    'Comment Written' => $consultation['comment'],
+                    'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'
+                ],
+                '../server/deleteRecord.php?consultationID'
+            );
+        }
+    } else {
+        echo '<div style="height:400px; display: flex; align-items:center; justify-content:center; flex-direction: column;">';
+        echo '<h1>No results found</h1>';
+        renderBigButton('../pages/consultation.php', '', 'Back to Consultation', 'button', '#7AB2D3');
+        echo '</div>';
     }
-
-
     ?>
 </body>
 

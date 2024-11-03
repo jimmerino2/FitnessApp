@@ -30,7 +30,7 @@ function renderFormItemRadio($title = "Title", $name, $values)
     echo "</div>";
 }
 
-function renderFormItemSelect($title, $name, $values,$currentValue)
+function renderFormItemSelect($title, $name, $values, $currentValue)
 {
     echo "
     <div class='form-item'>
@@ -46,7 +46,7 @@ function renderFormItemSelect($title, $name, $values,$currentValue)
     echo "</select></div>";
 }
 
-function renderFormItemCalendar($title = "Title", $name,$min, $max, $value)
+function renderFormItemCalendar($title = "Title", $name, $min, $max, $value)
 {
     echo "
     <div class='form-item'>
@@ -55,15 +55,18 @@ function renderFormItemCalendar($title = "Title", $name,$min, $max, $value)
     </div>
     ";
 }
-function renderFormItemTime($title = "Title", $name, $min, $max, $value)
+function renderFormItemTime($title = "Title", $name, $min = '', $max = '', $value = '', $isReq = false)
 {
     echo "
     <div class='form-item'>
-        <h3 class='form-title'>$title</h3>
-        <input type='time' name='$name' min='$min' max='$max' value='$value'class='form-input' required>
-    </div>
-    ";
+        <h3 class='form-title'>$title</h3>";
+
+    $required = $isReq ? 'required' : '';
+
+    echo "<input type='time' name='$name' min='$min' max='$max' value='$value' class='form-input' $required>";
+    echo "</div>";
 }
+
 
 function renderFormItemEmail($title = "Title", $name = "Name", $placeholder = "Placeholder")
 {
@@ -98,7 +101,8 @@ function renderFormItemPassword($title = "Title", $name = "Name", $placeholder =
         margin-bottom: 8px;
     }
 
-    .form-input, select {
+    .form-input,
+    select {
         height: 25px;
         width: 100%;
         padding: 5px;
@@ -112,7 +116,7 @@ function renderFormItemPassword($title = "Title", $name = "Name", $placeholder =
         margin: 0px 20px 10px 0px;
     }
 
-    select{
+    select {
         height: auto;
     }
 

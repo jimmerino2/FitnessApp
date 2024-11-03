@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,12 +51,12 @@
                 $_SESSION['health_id'] = $healthId;
                 include_once __DIR__ . '/../components/FormItem.php';
 
-                renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60',$health['weight']);
-                renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000',$health['water']);
+                renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60', $health['weight']);
+                renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000', $health['water']);
 
                 renderFormItemSelect('Set Exercise', 'exerciseID', ['4' => 'Pilates', '3' => 'Strengh Training', '2' => 'Cardio', '1' => 'Yoga'], $health['exerciseID']);
-                renderFormItemTime('Start Time', 'startTime','','',$health['startTime']);
-                renderFormItemTime('End Time', 'endTime','','',$health['endTime']);
+                renderFormItemTime('Start Time', 'startTime', '', '', $health['startTime'], false);
+                renderFormItemTime('End Time', 'endTime', '', '', $health['endTime'], false);
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');
@@ -85,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = 'UPDATE healthRecord SET water = ?, weight = ?, startTime = ?, endTime = ?, exerciseID = ? WHERE id = ?';
     dataInsertSql($sql, $conn, [$water, $weight, $startTime, $endTime, $exerciseID, $healthID]);
- 
+
     echo '<meta http-equiv="refresh" content="0;url=record_health.php">';
     exit();
 }

@@ -40,9 +40,9 @@
 
                 $currentDate = date('Y-m-d');
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemCalendar('Set Date', 'consultationDate',$currentDate, '','');
-                renderFormItemTime('Set Time', 'consultationTime','','','');
-                renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?','');
+                renderFormItemCalendar('Set Date', 'consultationDate', $currentDate, '', '');
+                renderFormItemTime('Set Time', 'consultationTime', '', '', '', true);
+                renderFormItemTextarea('Add comment (optional)', 'comment', 'What would you like the nutritionist to know?', '');
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('consultation.php', '', 'Back', 'button', '#FF8080', 'black');

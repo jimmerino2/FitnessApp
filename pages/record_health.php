@@ -44,11 +44,13 @@
   $conn->select_db('fitnessapp');
   include_once __DIR__ . '/../layout/header.php';
   include_once __DIR__ . '/../components/Tables.php';
+  include_once __DIR__ . '/../layout/title.php';
   include_once __DIR__ . '/../layout/footer.php';
   include_once __DIR__ . '/../components/SearchBar.php';
 
   renderHeader($conn);
-  echo "<h2 style='text-align: center; font-size:48px;'>Health Record</h2>";
+  renderTitle('Health Record', 'Track your weight, water intake and other data to better understand your body', '../asset/image/record_health.png', '');
+  echo '<br>';
   renderSearchBar('Search By Exercise');
   $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
 

@@ -88,14 +88,14 @@ function renderFormItemPassword($title = "Title", $name = "Name", $placeholder =
     ";
 }
 
-function renderFormItemNumber($title = "Title", $name = "Name", $isReq, $min, $max)
+function renderFormItemNumber($title = "Title", $name = "Name", $isReq, $min, $max, $value)
 {
     $required = $isReq ? 'required' : '';
 
     echo "
     <div class='form-item'>
         <h3 class='form-title'>$title</h3>
-        <input type='number' name='$name' min=$min max=$max class='form-input' $required>
+        <input type='number' name='$name' min=$min max=$max class='form-input' value=$value $required>
     </div>
     ";
 }

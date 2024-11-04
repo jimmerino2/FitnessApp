@@ -31,7 +31,7 @@ session_start();
                 echo "<h3 style='margin-top: 30px; text-decoration: underline;'>Optional Section</h3>";
                 renderFormItemSelect('Set Exercise', 'exerciseID', ['3' => 'Cardio', '2' => 'Yoga', '4' => 'Weight Lifting', '5' => 'Pilates', '1' => 'None'], '1');
                 renderFormItemTime('Start Time', 'startTime', '', '', '', false);
-                renderFormItemNumber('Duration (min)', 'duration', false, 0, 300);
+                renderFormItemNumber('Duration (min)', 'duration', false, '0', '300', $health['duration']);
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');

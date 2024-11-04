@@ -56,7 +56,7 @@
 
                 renderFormItemSelect('Set Exercise', 'exerciseID', ['4' => 'Pilates', '3' => 'Strengh Training', '2' => 'Cardio', '1' => 'Yoga'], $health['exerciseID']);
                 renderFormItemTime('Start Time', 'startTime', '', '', $health['startTime'], false);
-                renderFormItemNumber('Duration (min)', 'duration', false, '0', '360');
+                renderFormItemNumber('Duration (min)', 'duration', false, '0', '360', $health['duration']);
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');

@@ -1,5 +1,6 @@
 <?php
-session_start(); ?>
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,15 +24,14 @@ session_start(); ?>
                 $conn->select_db('fitnessapp');
 
                 include_once __DIR__ . '/../components/FormItem.php';
-                renderFormItemTime('Set Time', 'time', '', '', '');
-                renderFormItemCalendar('Set Date', 'date', '', '', '');
-
+                echo "<h3 style='margin-top: 30px; text-decoration: underline;'>Required Section</h3>";
                 renderFormItemText('Set Weight(kg)', 'weight', 'Example: 60', '');
                 renderFormItemText('Set Water Intake(ml)', 'water', 'Example: 3000', '');
 
+                echo "<h3 style='margin-top: 30px; text-decoration: underline;'>Optional Section</h3>";
                 renderFormItemSelect('Set Exercise', 'exerciseID', ['3' => 'Cardio', '2' => 'Yoga', '4' => 'Weight Lifting', '5' => 'Pilates', '1' => 'None'], '1');
                 renderFormItemTime('Start Time', 'startTime', '', '', '', false);
-                renderFormItemTime('End Time', 'endTime', '', '', '', false);
+                renderFormItemNumber('Duration (min)', 'duration', false, 0, 300);
 
                 include_once __DIR__ . '/../components/Buttons.php';
                 renderSmallButton('record_health.php', '', 'Back', 'button', '#FF8080', 'black');
@@ -49,21 +49,26 @@ session_start(); ?>
 include_once __DIR__ . '/../server/data.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $time = $_POST['time'];
-    $date = $_POST['date'];
+    date_default_timezone_set('Asia/Kuala_Lumpur');
+    $currentDateTime = new DateTime();
+    $currentDate = $currentDateTime->format('Y-m-d');
+    $currentTime = $currentDateTime->format('H:i:s');
+
     $startTime = $_POST['startTime'];
-    $endTime = $_POST['endTime'];
+    $duration = $_POST['duration'];
     $water = $_POST['water'];
     $weight = $_POST['weight'];
     $exerciseID = $_POST['exerciseID'];
+    $endTime = '';
 
     // memberID
     $sql = 'SELECT id FROM member WHERE email = ?';
     dataMapSql($sql, $conn, [$_SESSION['userinput']], $memberID);
 
-    $sql = 'INSERT INTO HealthRecord (memberID, time, date, water, weight, startTime, endTime, exerciseID) VALUES (?, ?, ?, ?, ? ,? ,? ,?)';
-    dataInsertSql($sql, $conn, [$memberID, $time, $date, $water, $weight, $startTime, $endTime, $exerciseID]);
+    $sql = 'INSERT INTO HealthRecord (memberID, time, date, water, weight, startTime, duration, exerciseID) VALUES (?, ?, ?, ?, ? ,? ,? ,?)';
+    dataInsertSql($sql, $conn, [$memberID, $currentTime, $currentDate, $water, $weight, $startTime, $duration, $exerciseID]);
 
     echo '<meta http-equiv="refresh" content="0;url=record_health.php">';
     exit();
 }
+?>

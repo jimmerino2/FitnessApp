@@ -71,7 +71,8 @@
             FROM Consultation c
             JOIN Nutritionist n ON c.nutritionistID = n.ID
             JOIN Member m ON c.memberID = m.ID
-            WHERE n.nutritionistName LIKE :search';
+            WHERE n.nutritionistName LIKE :search
+            ORDER BY c.status ASC, c.date ASC, c.time ASC';
     $consultationList = dataGetResultSql($sql, $pdo, ['search' => $search], ['adminConsultationID', 'date', 'time', 'nutritionistID', 'nutritionistName', 'nutritionistContact', 'comment', 'status', 'memberID', 'memberName', 'email']);
 
     $groupedConsultations = [];

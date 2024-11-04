@@ -40,28 +40,9 @@
             </div>
             
             <div class='form-item'>
-                <h3 class='form-title'>Set End Date</h3>
-                <input type='date' id='endDate' name='endDate' class='form-input' required>
+                <h3 class='form-title'>Set Number of Months (Max 5)</h3>
+                <input type='number' name='noOfMonths' min='1' max='5' class='form-input' required>
             </div>
-
-            <script>
-                const startDateInput = document.getElementById('startDate');
-                const endDateInput = document.getElementById('endDate');
-
-                // Function to update endDate minimum based on startDate
-                startDateInput.addEventListener('change', function() {
-                    const startDateValue = new Date(this.value);
-                    if (startDateValue) {
-                        // Add one month to startDate for endDate minimum
-                        const minEndDate = new Date(startDateValue);
-                        minEndDate.setMonth(minEndDate.getMonth() + 1);
-
-                        // Format date as YYYY-MM-DD for the input field
-                        const formattedDate = minEndDate.toISOString().split('T')[0];
-                        endDateInput.min = formattedDate;
-                    }
-                });
-            </script>
             ";
 
                 include_once __DIR__ . '/../components/Buttons.php';
@@ -83,12 +64,17 @@ include_once __DIR__ . '/../server/data.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $classID = $_POST['classID'];
     $startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
+    $noOfMonths = $_POST['noOfMonths'];
 
-    // memberID
+    // Set End Date
+    $endDate = new DateTime($startDate);
+    $endDate->modify('+' . $noOfMonths . ' months');
+    $endDate = $endDate->format('Y-m-d');
+
     $sql = 'SELECT id FROM member WHERE email = ?';
     dataMapSql($sql, $conn, [$_SESSION['userinput']], $memberID);
 
+    // Insert into Enrollment table
     $sql = 'INSERT INTO Enrollment (memberID, classID, startDate, endDate) VALUES (?, ?, ?, ?)';
     dataInsertSql($sql, $conn, [$memberID, $classID, $startDate, $endDate]);
 

@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS HealthRecord (
     date DATE NOT NULL,
     time TIME NOT NULL,
     water INT NOT NULL,
-    startTime TIME NOT NULL,
-    endTime TIME NOT NULL,
+    startTime TIME,
+    duration INT, 
     FOREIGN KEY (memberID) REFERENCES Member(id),
     FOREIGN KEY (exerciseID) REFERENCES Exercise(id)
 );

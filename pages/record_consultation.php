@@ -10,6 +10,7 @@
 <body style="margin: 0px;">
     <?php
     include_once __DIR__ . '/../layout/header.php';
+    include_once __DIR__ . '/../layout/footer.php';
     include_once __DIR__ . '/../server/connectDB.php';
     include_once __DIR__ . '/../server/data.php';
     include_once __DIR__ . '/../components/Tables.php';
@@ -25,7 +26,8 @@
     $sql = 'SELECT c.*, n.nutritionistName, n.nutritionistContact 
                 FROM Consultation c
                 JOIN Nutritionist n ON c.nutritionistID = n.id
-                WHERE c.memberID = ?';
+                WHERE c.memberID = ?
+                ORDER BY c.date ASC, c.time ASC';
     $consultationList = dataGetResultSql(
         $sql,
         $pdo,
@@ -33,6 +35,7 @@
         ['id', 'nutritionistID', 'date', 'time', 'comment', 'status', 'nutritionistName', 'nutritionistContact']
     );
 
+    echo '<div style="min-height:500px; display: flex; align-items:center; justify-content:center; flex-direction: column;">';
     if (count($consultationList) !== 0) {
         foreach ($consultationList as $consultation) {
             renderTable(
@@ -42,17 +45,19 @@
                     'Consultant Name' => $consultation['nutritionistName'],
                     'Consultant Contact' => $consultation['nutritionistContact'],
                     'Comment Written' => $consultation['comment'],
+                    'Price' => 'RM20.00',
                     'Status' => (!$consultation['status']) ? 'Pending Approval' : 'Approved'
                 ],
                 '../server/deleteRecord.php?consultationID'
             );
         }
     } else {
-        echo '<div style="height:400px; display: flex; align-items:center; justify-content:center; flex-direction: column;">';
         echo '<h1>No results found</h1>';
         renderBigButton('../pages/consultation.php', '', 'Back to Consultation', 'button', '#7AB2D3');
-        echo '</div>';
     }
+    echo '</div>';
+
+    renderFooter();
     ?>
 </body>
 

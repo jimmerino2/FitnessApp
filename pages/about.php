@@ -6,12 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <style>
-        .header {
-            display: flex;
-            justify-content: center;
-            color: #1FAB89;
-        }
-
         .tablebg {
             width: 100%;
             position: relative;
@@ -24,9 +18,9 @@
             top: 10%;
             left: 50%;
             transform: translateX(-50%);
-            width: 85%;
+            width: 90%;
             height: 75%;
-            background-color: #1FAB89;
+            background-color: #7AB2D3;
             z-index: -1;
         }
 
@@ -37,9 +31,8 @@
             margin-bottom: 0px;
         }
 
-        td {
-            width: 55%;
-            background-color: transparent;
+        #owner {
+            margin-left: 60px;
         }
 
         #goals td {
@@ -77,8 +70,9 @@
         .content {
             display: inline-block;
             padding: 10px 8px;
-            background-color: #FF8080;
+            background-color: #B9E5E8;
             font-size: 18px;
+            margin-bottom: 40px;
         }
 
         .slideshow {
@@ -86,8 +80,9 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            width: fit-content;
+            padding: 40px;
             margin: auto;
-            width: 60%
         }
 
         .slideimg {
@@ -97,21 +92,21 @@
         }
 
         .slideimg img {
-            width: 90%;
-            height: 350px;
+            width: 700px;
+            height: auto;
         }
 
         .caption {
             position: absolute;
-            bottom: 8px;
+            bottom: 0px;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
-            font-size: 18px;
+            font-size: 24px;
             color: white;
-            background: #1FAB89;
-            padding: 4px;
-            width: 60%;
+            background: #4A628A;
+            padding: 10px;
+            width: 120%;
             align-items: center;
         }
 
@@ -119,7 +114,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: #1FAB89;
+            background-color: #4A628A;
             color: white;
             border: none;
             font-size: 24px;
@@ -137,16 +132,22 @@
 
         .info {
             display: flex;
-            flex-direction: column;
+            width: 100%;
+            justify-content: space-around;
             align-items: center;
             text-align: center;
-            color: #1FAB89;
+            background-color: #B9E5E8;
+            padding: 20px;
+            margin-bottom: 40px;
         }
 
-        .info hr {
-            width: 85%;
-            color: black;
-            margin: 20px;
+        .home_header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: #4A628A;
+            margin-top: 40px;
+            margin-bottom: 40px;
         }
     </style>
 </head>
@@ -155,21 +156,23 @@
     <?php
     session_start();
     include_once __DIR__ . '/../layout/header.php';
+    include_once __DIR__ . '/../layout/title.php';
+    include_once __DIR__ . '/../layout/footer.php';
     include_once __DIR__ . '/../server/connectDB.php';
     $conn->select_db('fitnessapp');
     renderHeader($conn);
-    ?>
 
-    <div class="header">
-        <h1>About Us</h1>
-    </div>
+    renderTitle('About Us', 'Learn more about our company and our vision and mission', '../asset/image/HomepageTitle.jpeg', '');
+    ?>
 
     <div class="tablebg">
         <table id="goals">
             <tr>
                 <td><img src="../asset/image/fitness1.png" height="300px" width="500px"></td>
-                <th>Our mission:<br><br>
-                    <div class="content">Bringing You to a Healthier Life<br>for Your Beautiful Future</div>
+                <th>Our Vision and Mission<br><br>
+                    <div class="content">
+                        Bringing you a healthier life for a beautiful and fruitful future<br>
+                    </div>
                 </th>
             </tr>
         </table>
@@ -178,15 +181,18 @@
             <tr>
                 <th>Chen Huan,<br>Owner of Huan Fitness
                     <br><br>
-                    <div class="content">Empowering Health and Wellness?</div>
+                    <div class="content">
+                        Driven and passionate to help people meet their health and body goals<br><br>
+                        "Fitness and proper diets are the key to success."
+                    </div>
                 </th>
                 <td><img src="../asset/image/chenhuan.png"></td>
             </tr>
         </table>
     </div>
 
-    <div class="header">
-        <h2>Member's Review</h2>
+    <div class="home_header">
+        <h1>Member's Review</h1>
     </div>
 
     <div class="slideshow">
@@ -212,19 +218,23 @@
     </div>
 
     <div class="info">
-        <br>
-        <hr>
-        <h3>Want to know more about us?</h3>
-        <h2>VISIT us at:</h2>
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.8788100020483!2d101.72195697497105!3d3.1267292968487674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc37bb455b4e61%3A0x7eebdcb9726d2ed2!2sSunway%20College%20%40%20Velocity!5e0!3m2!1sen!2smy!4v1730278439081!5m2!1sen!2smy"
-            width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-        <h2>or EMAIL us at:</h2>
-        <h3><a href="mailto:huanfitness@gmail.com">huanfitness@gmail.com</a></h3>
+        <div style="display: flex; flex-direction:column; align-items:center;">
+            <h2>Want to know more about us?</h2>
+            <h2>VISIT us at:</h2>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.8788100020483!2d101.72195697497105!3d3.1267292968487674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc37bb455b4e61%3A0x7eebdcb9726d2ed2!2sSunway%20College%20%40%20Velocity!5e0!3m2!1sen!2smy!4v1730278439081!5m2!1sen!2smy"
+                width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div style="display: flex; flex-direction:column; align-items:center;">
+            <h2>EMAIL us at:</h2>
+            <h3><a href="mailto:huanfitness@gmail.com" style="color: black;">huanfitness@gmail.com</a></h3>
+            <img src="../asset/image/fitness.png" style="width: 350px; height: 350px;">
+        </div>
     </div>
 
+    <?php renderFooter(); ?>
     <script>
         var slideIndex = 1;
         showDivs(slideIndex);
